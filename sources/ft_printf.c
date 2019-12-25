@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:49:52 by fprovolo          #+#    #+#             */
-/*   Updated: 2019/12/24 18:52:39 by fprovolo         ###   ########.fr       */
+/*   Updated: 2019/12/25 19:08:45 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ int     ft_printf(char *str, ...)
 	va_start(ap, str);
 	while (*ptr != '\0')
 		if (*ptr == '%')
-			parse_conversion(&ptr, &flags, ap);
+		{
+			if (!(parse_format(&ptr, &flags, ap)))
+				return (-1);
+		}
 		else
 		{
 			write(1, ptr, 1);

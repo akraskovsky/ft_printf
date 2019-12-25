@@ -6,7 +6,7 @@
 #    By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 10:53:01 by fprovolo          #+#    #+#              #
-#    Updated: 2019/12/24 17:57:11 by fprovolo         ###   ########.fr        #
+#    Updated: 2019/12/25 15:53:21 by fprovolo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 SRC_PATH = ./sources/
-SRC_NAME = main.c ft_printf.c parse.c
+SRC_NAME = main.c ft_printf.c parse_format.c get_argument.c 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
 OBJ_PATH = ./objects/
@@ -35,7 +35,7 @@ LIB = -lft -L$(LIBFT_PATH)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(MLX) $(OBJ_PATH) $(OBJ)
+$(NAME): $(LIBFT) $(OBJ_PATH) $(OBJ)
 	$(CC) -o $(NAME) $(OBJ) $(LIB)
 
 $(OBJ_PATH):
@@ -56,8 +56,3 @@ fclean: clean
 	/bin/rm -f $(LIBFT)
 
 re: fclean all
-
-
-# $(INCLUDES_PATH)$(NAME).h
-# $(OBJ_PATH)%.o: %.c ./includes/ft_printf.h
-#	$(CC) $(CFLAGS) -c $< -o $@
