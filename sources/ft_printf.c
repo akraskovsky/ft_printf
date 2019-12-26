@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:49:52 by fprovolo          #+#    #+#             */
-/*   Updated: 2019/12/25 19:08:45 by fprovolo         ###   ########.fr       */
+/*   Updated: 2019/12/26 18:58:35 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ void	init_flags(t_flags *flags)
 	flags->thousands = 0;
 	flags->min_width = 0;
 	flags->precision = 0;
+	flags->mod_char = 0;
 	flags->mod_short = 0;
 	flags->mod_long = 0;
+	flags->mod_long_long = 0;
 	flags->mod_long_double = 0;
 	flags->len = 0;
 	return ;
@@ -49,5 +51,6 @@ int     ft_printf(char *str, ...)
 			ptr++;
 		} 
 	va_end(ap);
+	print_flags(&flags);
 	return (0);
 }

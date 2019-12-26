@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 15:55:22 by fprovolo          #+#    #+#             */
-/*   Updated: 2019/12/25 19:10:06 by fprovolo         ###   ########.fr       */
+/*   Updated: 2019/12/26 18:05:24 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ int		ft_printf(char *str, ...);
 void	init_flags(t_flags *flags);
 int		parse_format(char **ptr, t_flags *flags, va_list ap);
 int		get_argument(t_flags *flags, char **ptr, va_list ap);
+void	print_flags(t_flags *flags);  //*** test function !!! ***//
 
 #endif

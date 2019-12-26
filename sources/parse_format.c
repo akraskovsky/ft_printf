@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 17:10:19 by fprovolo          #+#    #+#             */
-/*   Updated: 2019/12/25 19:07:33 by fprovolo         ###   ########.fr       */
+/*   Updated: 2019/12/26 18:59:39 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ void	check_flags(t_flags *flags, char **ptr)
 		else if (**ptr =='\'')
 			flags->thousands = 1;
 		else if (**ptr == ' ')
-			flags->first_space = 0;
+			flags->first_space = 1;
 		else if (**ptr == '0')
 			flags->zero_padding = 1;
 		else if (**ptr == '#')
 			flags->alt_out = 1;
-		printf("\nflag = \'%c\'", **ptr);
 		(*ptr)++;
 	}
 	return ;
@@ -52,7 +51,7 @@ void	check_precision(t_flags *flags, char **ptr)
 		(*ptr)++;
 		while (ft_strchr("0123456789", **ptr))
 		{
-			flags->min_width = flags->min_width * 10 + (**ptr - '0');
+			flags->precision = flags->precision * 10 + (**ptr - '0');
 			(*ptr)++;
 		}
 	}
