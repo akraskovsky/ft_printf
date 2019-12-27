@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 15:55:22 by fprovolo          #+#    #+#             */
-/*   Updated: 2019/12/26 18:05:24 by fprovolo         ###   ########.fr       */
+/*   Updated: 2019/12/27 15:29:56 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@
 
 typedef	struct	s_flags
 {
-	char		alt_out;
-	char		zero_padding;
-	char		left;
-	char		first_space;
-	char		sign;
-	char		thousands;
-	int			min_width;
-	int			precision;
-	char		mod_char;
-	char		mod_short;
-	char		mod_long;
-	char		mod_long_long;
-	char		mod_long_double;
+	char		alt_out;//#
+	char		zero_padding;//00000
+	char		left;// -
+	char		first_space;// ' ' 
+	char		sign;// +
+	char		thousands;//'
+	int			min_width;//
+	int			precision;//...
+	char		mod_char;//char
+	char		mod_short;//short 
+	char		mod_long;//
+	char		mod_long_long;//
+	char		mod_long_double;//
 	size_t		len;
 }				t_flags;
 
