@@ -6,14 +6,14 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 15:55:22 by fprovolo          #+#    #+#             */
-/*   Updated: 2019/12/30 11:06:32 by fprovolo         ###   ########.fr       */
+/*   Updated: 2019/12/30 17:12:05 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# define BUFF_SIZE	60
+//# define BUFF_SIZE	60
 
 # include <stdio.h>  // for test!
 # include <unistd.h>
@@ -30,6 +30,7 @@ typedef	struct	s_flags
 	char		thousands;//'
 	int			min_width;//
 	int			precision;//...
+	int			precision_set;
 	char		mod_char;//char
 	char		mod_short;//short 
 	char		mod_long;//
@@ -42,6 +43,8 @@ int		ft_printf(char *str, ...);
 void	init_flags(t_flags *flags);
 int		parse_format(char **ptr, t_flags *flags, va_list ap);
 int		get_argument(t_flags *flags, char **ptr, va_list ap);
+int		get_int(t_flags *flags, va_list ap);
+
 void	print_flags(t_flags *flags);  //*** test function !!! ***//
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:49:52 by fprovolo          #+#    #+#             */
-/*   Updated: 2019/12/27 20:23:01 by fprovolo         ###   ########.fr       */
+/*   Updated: 2019/12/30 17:21:03 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_flags(t_flags *flags)
 	flags->thousands = 0;
 	flags->min_width = 0;
 	flags->precision = 0;
+	flags->precision_set = 0;
 	flags->mod_char = 0;
 	flags->mod_short = 0;
 	flags->mod_long = 0;
@@ -35,7 +36,7 @@ int     ft_printf(char *str, ...)
 {
 	va_list	ap;
 	t_flags	flags;
-	char	buff[BUFF_SIZE];
+//	char	buff[BUFF_SIZE];
 	char	*ptr;
 
 	ptr = str;

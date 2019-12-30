@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:58:19 by fprovolo          #+#    #+#             */
-/*   Updated: 2019/12/26 18:52:06 by fprovolo         ###   ########.fr       */
+/*   Updated: 2019/12/30 17:54:17 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int     main(void)
 {
-    ft_printf("Test string \'%# 225.3lld\' will work!\n", 8796093022207);
+    ft_printf("Test string \'%+.8lld\' will work!\n", 15);
 }

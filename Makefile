@@ -6,7 +6,7 @@
 #    By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 10:53:01 by fprovolo          #+#    #+#              #
-#    Updated: 2019/12/26 18:05:24 by fprovolo         ###   ########.fr        #
+#    Updated: 2019/12/30 16:55:49 by fprovolo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 SRC_PATH = ./sources/
-SRC_NAME = main.c ft_printf.c parse_format.c get_argument.c tools.c
+SRC_NAME = main.c ft_printf.c parse_format.c get_argument.c get_int.c \
+			tools.c
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
 OBJ_PATH = ./objects/
