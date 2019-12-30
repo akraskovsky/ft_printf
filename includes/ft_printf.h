@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 15:55:22 by fprovolo          #+#    #+#             */
-/*   Updated: 2019/12/27 20:21:27 by fprovolo         ###   ########.fr       */
+/*   Updated: 2019/12/30 11:06:32 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@
 
 typedef	struct	s_flags
 {
-	char		alt_out;
-	char		zero_padding;
-	char		left;
-	char		first_space;
-	char		sign;
-	char		thousands;
-	int			min_width;
-	int			precision;
-	char		mod_char;
-	char		mod_short;
-	char		mod_long;
-	char		mod_long_long;
-	char		mod_long_double;
+	char		alt_out;//#
+	char		zero_padding;//00000
+	char		left;// -
+	char		first_space;// ' ' 
+	char		sign;// +
+	char		thousands;//'
+	int			min_width;//
+	int			precision;//...
+	char		mod_char;//char
+	char		mod_short;//short 
+	char		mod_long;//
+	char		mod_long_long;//
+	char		mod_long_double;//
 	size_t		len;
 }				t_flags;
 
