@@ -6,12 +6,14 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 15:55:22 by fprovolo          #+#    #+#             */
-/*   Updated: 2019/12/26 18:05:24 by fprovolo         ###   ########.fr       */
+/*   Updated: 2019/12/27 20:21:27 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
+# define BUFF_SIZE	60
 
 # include <stdio.h>  // for test!
 # include <unistd.h>

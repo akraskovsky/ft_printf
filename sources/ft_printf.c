@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:49:52 by fprovolo          #+#    #+#             */
-/*   Updated: 2019/12/26 18:58:35 by fprovolo         ###   ########.fr       */
+/*   Updated: 2019/12/27 20:23:01 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int     ft_printf(char *str, ...)
 {
 	va_list	ap;
 	t_flags	flags;
+	char	buff[BUFF_SIZE];
 	char	*ptr;
 
 	ptr = str;
