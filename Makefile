@@ -6,7 +6,7 @@
 #    By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 10:53:01 by fprovolo          #+#    #+#              #
-#    Updated: 2019/12/30 16:55:49 by fprovolo         ###   ########.fr        #
+#    Updated: 2020/01/04 20:35:01 by fprovolo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRC_PATH = ./sources/
 SRC_NAME = main.c ft_printf.c parse_format.c get_argument.c get_int.c \
-			tools.c
+			get_unsigned.c tools.c
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
 OBJ_PATH = ./objects/

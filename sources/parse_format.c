@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 17:10:19 by fprovolo          #+#    #+#             */
-/*   Updated: 2019/12/30 17:19:39 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/04 20:47:39 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,24 +62,32 @@ void	check_precision(t_flags *flags, char **ptr)
 void	check_modifier(t_flags *flags, char **ptr)
 {
 	if (**ptr == 'h')
-		if (*((*ptr) + 1) == 'h')
+	{
+		(*ptr)++;
+		if (**ptr == 'h')
 		{
 			flags->mod_char = 1;
 			(*ptr)++;
 		}
 		else
 			flags->mod_short = 1;
+	}
 	else if (**ptr == 'l')
-		if (*((*ptr) + 1) == 'l')
+	{
+		(*ptr)++;
+		if (**ptr == 'l')
 		{
 			flags->mod_long_long = 1;
 			(*ptr)++;
 		}
 		else
 			flags->mod_long = 1;
+	}
 	else if (**ptr == 'L')
+	{
 		flags->mod_long_double = 1;
-	(*ptr)++;
+		(*ptr)++;
+	}
 	return ;
 }
 
@@ -101,7 +109,9 @@ int		parse_format(char **ptr, t_flags *flags, va_list ap)
 		check_width(flags, ptr);
 		check_precision(flags, ptr);
 		check_modifier(flags, ptr);
-		ret = get_argument(flags, ptr, ap);
+		flags->conversion = **ptr;
+		(*ptr)++;
+		ret = get_argument(flags, ap);
 	}
 	return (ret);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_int.c                                          :+:      :+:    :+:   */
+/*   get_unsigned.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,63 +12,78 @@
 
 #include "ft_printf.h"
 
-size_t	arg_len(t_flags *flags, long long num)
+static size_t	arg_len(t_flags *flags, unsigned long long num)
 {
 	int	len;
 
 	len = 1;
 	if (num == 0 && flags->precision == 0 && flags->precision_set)
-		len = 0;
+		return (0);
 	while (num /= 10)
 		len++;
 	if (flags->precision > len)
 		len = flags->precision;
-	if (num < 0 || flags->sign || flags->first_space)
+	if (flags->alt_out && (flags->conversion == 'o'))
 		len++;
+	if (flags->alt_out &&
+			(flags->conversion == 'x' || flags->conversion == 'X'))
+		len += 2;
 	return (len);
 }
 
-char	*pf_itoa(t_flags *flags, long long num)
+static int		pf_base(char c)
+{
+	if (c == 'o')
+		return (8);
+	if (c == 'u')
+		return (10);
+	return (16);
+}
+
+static char		*pf_itoa_u(t_flags *flags, unsigned long long num)
 {
 	char	*str;
-	int		sign;
 	int		strlen;
+	int		base;
 
-	sign = (num < 0) ? -1 : 1;
 	strlen = arg_len(flags, num);
+	base = pf_base(flags->conversion);
 	if ((str = ft_strnew(strlen)))
 	{
 		while (strlen--)
 		{
-			str[strlen] = (num % 10 * sign) + '0';
-			num /= 10;
+			str[strlen] = (num % base) + 48;
+			if (str[strlen] > 57 && flags->conversion == 'X')
+				str[strlen] += 7;
+			if (str[strlen] > 57 && flags->conversion == 'x')
+				str[strlen] += 39;
+			num /= base;
 		}
-		if (sign < 0)
-			*str = '-';
-		else if (flags->sign)
-			*str = '+';
-		else if (flags->first_space)
-			*str = ' ';
+		if (flags->alt_out && base != 10 && flags->conversion != 'p')
+			*str = '0';
+		if (flags->alt_out && base == 16 && flags->conversion != 'p')
+			*(str + 1) = flags->conversion;
 	}
 	return (str);
 }
 
-char	*get_int(t_flags *flags, va_list ap)
+/*  conversions ouxXp  */
+char			*get_unsigned(t_flags *flags, va_list ap)
 {
-	long long	num;
-	char		*str;
+	unsigned long long	num;
+	char				*str;
 
 	num = 0;
 	if (flags->mod_char)
-		num = (char)va_arg(ap, int);
+		num = (unsigned char)va_arg(ap, unsigned int);
 	else if (flags->mod_short)
-		num = (short)va_arg(ap, int);
+		num = (unsigned short)va_arg(ap, unsigned int);
 	else if (flags->mod_long)
-		num = va_arg(ap, long);
+		num = va_arg(ap, unsigned long);
 	else if (flags->mod_long_long)
-		num = va_arg(ap, long long);
+		num = va_arg(ap, unsigned long long);
 	else
-		num = va_arg(ap, int);
-	str = pf_itoa(flags, num);
+		num = (unsigned int)va_arg(ap, unsigned int);
+	str = pf_itoa_u(flags, num);
 	return (str);
 }
