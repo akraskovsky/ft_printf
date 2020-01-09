@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:58:19 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/04 20:51:48 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/09 19:38:13 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,10 @@
 
 int     main(void)
 {
-    ft_printf("Test string %#.4o will work!\n", 63);
+    char	*str = "My string";
+    long	num;
+    
+    num = 587687687685;
+    ft_printf("String address %p num=%#lx address %p - will work!\n", str, num, &num);
+    printf("String address %p num=%#lx address %p - will work!\n", str, num, &num);
 }

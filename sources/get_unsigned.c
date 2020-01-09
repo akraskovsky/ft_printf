@@ -6,26 +6,28 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/04 20:32:32 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/09 19:25:14 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static size_t	arg_len(t_flags *flags, unsigned long long num)
+static size_t	arg_len_u(t_flags *flags, unsigned long long num, int base)
 {
 	int	len;
 
 	len = 1;
 	if (num == 0 && flags->precision == 0 && flags->precision_set)
 		return (0);
-	while (num /= 10)
+	while (num /= base)
 		len++;
-	if (flags->precision > len)
+	if (flags->conversion == 'p')
+		return (len + 2);
+	if (flags->precision > len )
 		len = flags->precision;
 	if (flags->alt_out && (flags->conversion == 'o'))
 		len++;
-	if (flags->alt_out &&
+	else if (flags->alt_out &&
 			(flags->conversion == 'x' || flags->conversion == 'X'))
 		len += 2;
 	return (len);
@@ -46,8 +48,8 @@ static char		*pf_itoa_u(t_flags *flags, unsigned long long num)
 	int		strlen;
 	int		base;
 
-	strlen = arg_len(flags, num);
 	base = pf_base(flags->conversion);
+	strlen = arg_len_u(flags, num, base);
 	if ((str = ft_strnew(strlen)))
 	{
 		while (strlen--)
@@ -55,14 +57,16 @@ static char		*pf_itoa_u(t_flags *flags, unsigned long long num)
 			str[strlen] = (num % base) + 48;
 			if (str[strlen] > 57 && flags->conversion == 'X')
 				str[strlen] += 7;
-			if (str[strlen] > 57 && flags->conversion == 'x')
+			if (str[strlen] > 57 && (flags->conversion == 'x' || flags->conversion == 'p'))
 				str[strlen] += 39;
 			num /= base;
 		}
-		if (flags->alt_out && base != 10 && flags->conversion != 'p')
+		if ((flags->alt_out && base != 10) || flags->conversion == 'p')
 			*str = '0';
-		if (flags->alt_out && base == 16 && flags->conversion != 'p')
+		if (flags->alt_out && base == 16)
 			*(str + 1) = flags->conversion;
+		if (flags->conversion == 'p')
+			*(str + 1) = 'x';
 	}
 	return (str);
 }
@@ -74,7 +78,9 @@ char			*get_unsigned(t_flags *flags, va_list ap)
 	char				*str;
 
 	num = 0;
-	if (flags->mod_char)
+	if (flags->conversion == 'p')
+		num = (unsigned long long)va_arg(ap, void *);
+	else if (flags->mod_char)
 		num = (unsigned char)va_arg(ap, unsigned int);
 	else if (flags->mod_short)
 		num = (unsigned short)va_arg(ap, unsigned int);
