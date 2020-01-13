@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:58:19 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/09 19:38:13 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/13 20:10:48 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,16 @@
 
 int     main(void)
 {
-    char	*str = "My string";
+//    char	*str = "My string";
     long	num;
+    int     value;
     
-    num = 587687687685;
-    ft_printf("String address %p num=%#lx address %p - will work!\n", str, num, &num);
-    printf("String address %p num=%#lx address %p - will work!\n", str, num, &num);
+    value = 545678;
+    ft_printf("Integer \'%d\' \'%10d\' \'%-+10d\' \'% 010d\'.\n", value, value, value, value);
+    printf("Integer \'%d\' \'%10d\' \'%-+10d\' \'% 010d\'.\n", value, value, value, value);
+
+
+    num = 87687687685;
+    ft_printf("long num=\'%#lx\' \'%lX\' \'%020lx\'\n", num, num, num);
+    printf("long num=\'%#lx\' \'%lX\' \'%020lx\'\n", num, num, num);
 }

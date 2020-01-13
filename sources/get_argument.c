@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/04 20:38:27 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/13 17:50:35 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int		get_argument(t_flags *flags, va_list ap)
 	else
 	{
 		write(1, "\nBad conversion!\n", 17);
-		printf("conv = \'%c\'\n", flags->conversion);
 		return (0);
 	}
-	ft_putstr(str);
+	write(1, str, flags->field_len);
+	free(str);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 11:22:16 by fprovolo          #+#    #+#             */
-/*   Updated: 2019/12/30 17:18:46 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/13 16:36:01 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,26 @@ void	print_flags(t_flags *flags)
 	printf("left =            %hhd\n", flags->left);
 	printf("first space =     %hhd\n", flags->first_space);
 	printf("sign =            %hhd\n", flags->sign);
-	printf("min_width =       %d\n", flags->min_width);
-	printf("precision =       %d\n", flags->precision);
+	printf("min_width =       %zu\n", flags->min_width);
+	printf("precision =       %zu\n", flags->precision);
 	printf("precision_set =   %d\n", flags->precision_set);
 	printf("mod_char =        %hhd\n", flags->mod_char);
 	printf("mod short =       %hhd\n", flags->mod_short);
 	printf("mod_long =        %hhd\n", flags->mod_long);
 	printf("mod_long_long =   %hhd\n", flags->mod_long_long);
 	printf("mod_long_double = %hhd\n", flags->mod_long_double);
+}
+
+char	*ft_strnewfill(size_t len, char c)
+{
+	char	*str;
+	size_t	i;
+
+	i = 0;
+	str = (char *)malloc(len + 1);
+	if (str != NULL)
+		while (i < len)
+			str[i++] = c;
+		str[len] = '\0';
+	return (str);
 }

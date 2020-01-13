@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 15:55:22 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/09 19:13:37 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/13 15:11:22 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ typedef	struct	s_flags
 	char		first_space;// ' ' 
 	char		sign;// +
 	char		thousands;//'
-	int			min_width;//
-	int			precision;//...
+	size_t		min_width;//
+	size_t		precision;//...
 	int			precision_set;
 	char		mod_char;//char
 	char		mod_short;//short 
@@ -37,7 +37,8 @@ typedef	struct	s_flags
 	char		mod_long_long;//
 	char		mod_long_double;//
 	char		conversion;
-	size_t		len;
+	size_t		arg_len;
+	size_t		field_len;
 }				t_flags;
 
 int		ft_printf(char *str, ...);
@@ -46,6 +47,7 @@ int		parse_format(char **ptr, t_flags *flags, va_list ap);
 int		get_argument(t_flags *flags, va_list ap);
 char	*get_int(t_flags *flags, va_list ap);
 char	*get_unsigned(t_flags *flags, va_list ap);
+char	*ft_strnewfill(size_t len, char c);
 
 void	print_flags(t_flags *flags);  //*** test function !!! ***//
 

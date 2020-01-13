@@ -6,30 +6,33 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/09 19:25:14 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/13 20:13:06 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static size_t	arg_len_u(t_flags *flags, unsigned long long num, int base)
+static size_t	get_arg_len_u(t_flags *flags, unsigned long long num, int base)
 {
-	int	len;
+	size_t	len;
 
 	len = 1;
 	if (num == 0 && flags->precision == 0 && flags->precision_set)
-		return (0);
+		len = 0;
 	while (num /= base)
 		len++;
-	if (flags->conversion == 'p')
-		return (len + 2);
+	printf("Counted: len=%zu\n", len);
 	if (flags->precision > len )
 		len = flags->precision;
 	if (flags->alt_out && (flags->conversion == 'o'))
 		len++;
-	else if (flags->alt_out &&
-			(flags->conversion == 'x' || flags->conversion == 'X'))
+	else if (flags->conversion == 'p' || ((flags->alt_out) && (num > 0) &&
+			(flags->conversion == 'x' || flags->conversion == 'X')))
 		len += 2;
+	if (flags->min_width > len && flags->zero_padding &&
+			!flags->left && !flags->precision_set)
+		len = flags->min_width;	
+	printf("Returned: len=%zu\n", len);
 	return (len);
 }
 
@@ -42,31 +45,37 @@ static int		pf_base(char c)
 	return (16);
 }
 
-static char		*pf_itoa_u(t_flags *flags, unsigned long long num)
+static char		to_char(char c, char conversion)
+{
+	if (c <= 9)
+		return (c + 48);
+	if (conversion == 'X')
+		return (c + 55);
+	return (c + 87);
+}
+
+static char		*unsigned_to_str(t_flags *flags, unsigned long long num)
 {
 	char	*str;
-	int		strlen;
+	size_t	arg_len;
+	size_t	shift;
 	int		base;
 
 	base = pf_base(flags->conversion);
-	strlen = arg_len_u(flags, num, base);
-	if ((str = ft_strnew(strlen)))
+	arg_len = get_arg_len_u(flags, num, base);
+	flags->field_len = (flags->min_width > arg_len) ?
+					flags->min_width : arg_len;
+	shift = (flags->left) ? 0 : flags->field_len - arg_len;
+//	printf("field_len=%zu, arg_len=%zu, shift=%zu\n", flags->field_len, arg_len, shift);
+	if ((str = ft_strnewfill(flags->field_len, ' ')))
 	{
-		while (strlen--)
+		while (arg_len--)
 		{
-			str[strlen] = (num % base) + 48;
-			if (str[strlen] > 57 && flags->conversion == 'X')
-				str[strlen] += 7;
-			if (str[strlen] > 57 && (flags->conversion == 'x' || flags->conversion == 'p'))
-				str[strlen] += 39;
+			str[arg_len + shift] = to_char((char)(num % base), flags->conversion);
 			num /= base;
 		}
-		if ((flags->alt_out && base != 10) || flags->conversion == 'p')
-			*str = '0';
 		if (flags->alt_out && base == 16)
-			*(str + 1) = flags->conversion;
-		if (flags->conversion == 'p')
-			*(str + 1) = 'x';
+			str[shift + 1] = (flags->conversion == 'X') ? 'X' : 'x';
 	}
 	return (str);
 }
@@ -75,7 +84,6 @@ static char		*pf_itoa_u(t_flags *flags, unsigned long long num)
 char			*get_unsigned(t_flags *flags, va_list ap)
 {
 	unsigned long long	num;
-	char				*str;
 
 	num = 0;
 	if (flags->conversion == 'p')
@@ -90,6 +98,5 @@ char			*get_unsigned(t_flags *flags, va_list ap)
 		num = va_arg(ap, unsigned long long);
 	else
 		num = (unsigned int)va_arg(ap, unsigned int);
-	str = pf_itoa_u(flags, num);
-	return (str);
+	return (unsigned_to_str(flags, num));
 }

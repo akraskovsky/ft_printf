@@ -6,15 +6,15 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/04 20:32:32 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/13 19:38:00 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	arg_len(t_flags *flags, long long num)
+static size_t	get_arg_len(t_flags *flags, long long num)
 {
-	int	len;
+	size_t	len;
 
 	len = 1;
 	if (num == 0 && flags->precision == 0 && flags->precision_set)
@@ -25,22 +25,30 @@ size_t	arg_len(t_flags *flags, long long num)
 		len = flags->precision;
 	if (num < 0 || flags->sign || flags->first_space)
 		len++;
+	if (flags->min_width > len && flags->zero_padding &&
+			!flags->left && !flags->precision_set)
+		len = flags->min_width;
 	return (len);
 }
 
-char	*pf_itoa(t_flags *flags, long long num)
+static char		*arg_to_str(t_flags *flags, long long num)
 {
 	char	*str;
 	int		sign;
-	int		strlen;
+	size_t	arg_len;
+	size_t	shift;
+
 
 	sign = (num < 0) ? -1 : 1;
-	strlen = arg_len(flags, num);
-	if ((str = ft_strnew(strlen)))
+	arg_len = get_arg_len(flags, num);
+	flags->field_len = (flags->min_width > arg_len) ?
+						flags->min_width : arg_len;
+	shift = (flags->left) ? 0 : flags->field_len - arg_len;
+	if ((str = ft_strnewfill(flags->field_len, ' ')))
 	{
-		while (strlen--)
+		while (arg_len--)
 		{
-			str[strlen] = (num % 10 * sign) + '0';
+			str[arg_len + shift] = (num % 10 * sign) + '0';
 			num /= 10;
 		}
 		if (sign < 0)
@@ -56,7 +64,6 @@ char	*pf_itoa(t_flags *flags, long long num)
 char	*get_int(t_flags *flags, va_list ap)
 {
 	long long	num;
-	char		*str;
 
 	num = 0;
 	if (flags->mod_char)
@@ -69,6 +76,5 @@ char	*get_int(t_flags *flags, va_list ap)
 		num = va_arg(ap, long long);
 	else
 		num = va_arg(ap, int);
-	str = pf_itoa(flags, num);
-	return (str);
+	return (arg_to_str(flags, num));
 }
