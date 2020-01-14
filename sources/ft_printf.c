@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:49:52 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/14 13:41:53 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/14 14:01:32 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,21 @@ int     ft_printf(char *str, ...)
 	int		i;
 
 	length = 0;
-	i = 0;
 	va_start(ap, str);
-	while (str[i] != '\0')
-		if (str[i] != '%')
+	while (*str != '\0')
+	{
+		i = 0;
+		while (str[i] != '%' && str[i] != '\0')
 			i++;
-		else
-		{
-			write(1, str, i);
-			length += i;
-			str += i;
-			i = 0;
-			if (!(parse_format(&str, &flags, ap)))
-				return (-1);
-			length += flags.field_len;
-		}
-	write(1, str, i);
-	length += i;
+		write(1, str, i);
+		length += i;
+		str += i;
+		if (*str == '\0')
+			return (length);
+		if (!(parse_format(&str, &flags, ap)))
+			return (-1);
+		length += flags.field_len;
+	}
 	va_end(ap);
 	return (length);
 }

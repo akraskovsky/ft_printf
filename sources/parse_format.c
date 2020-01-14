@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 17:10:19 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/14 12:28:59 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/14 18:07:00 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ int		parse_format(char **ptr, t_flags *flags, va_list ap)
 	if (**ptr == '%')
 	{
 		write(1, *ptr, 1);
+		flags->field_len = 1;
 		*ptr += 1;
 	}
 	else

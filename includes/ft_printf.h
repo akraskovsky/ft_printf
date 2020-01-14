@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 15:55:22 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/14 12:28:59 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/14 14:15:46 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int		parse_format(char **ptr, t_flags *flags, va_list ap);
 int		get_argument(t_flags *flags, va_list ap);
 char	*get_int(t_flags *flags, va_list ap);
 char	*get_unsigned(t_flags *flags, va_list ap);
+char	*get_string(t_flags *flags, va_list ap);
 char	*ft_strnewfill(size_t len, char c);
 
 void	print_flags(t_flags *flags);  //*** test function !!! ***//

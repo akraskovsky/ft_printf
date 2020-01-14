@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/13 17:50:35 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/14 14:04:28 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int		get_argument(t_flags *flags, va_list ap)
 			flags->conversion == 'x' || flags->conversion == 'X' ||
 			flags->conversion == 'p')
 		str = get_unsigned(flags, ap);
-/*	else if (**ptr == 's' || **ptr == 'c')
-		get_string(flags, ap);
-	else if (**ptr == 'f')
+	else if (flags->conversion == 's' || flags->conversion == 'c')
+		str = get_string(flags, ap);
+/*	else if (**ptr == 'f')
 		get_float(flags, ap);*/
 	else
 	{
