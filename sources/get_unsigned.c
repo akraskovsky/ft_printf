@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/13 20:13:06 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/14 12:01:44 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 static size_t	get_arg_len_u(t_flags *flags, unsigned long long num, int base)
 {
-	size_t	len;
+	size_t				len;
+	unsigned long long	calc_num;
 
 	len = 1;
+	calc_num = num;
 	if (num == 0 && flags->precision == 0 && flags->precision_set)
 		len = 0;
-	while (num /= base)
+	while (calc_num /= base)
 		len++;
-	printf("Counted: len=%zu\n", len);
+//	printf("Counted: len=%zu\n", len);
 	if (flags->precision > len )
 		len = flags->precision;
 	if (flags->alt_out && (flags->conversion == 'o'))
@@ -32,7 +34,7 @@ static size_t	get_arg_len_u(t_flags *flags, unsigned long long num, int base)
 	if (flags->min_width > len && flags->zero_padding &&
 			!flags->left && !flags->precision_set)
 		len = flags->min_width;	
-	printf("Returned: len=%zu\n", len);
+//	printf("Returned: len=%zu\n", len);
 	return (len);
 }
 
@@ -66,7 +68,6 @@ static char		*unsigned_to_str(t_flags *flags, unsigned long long num)
 	flags->field_len = (flags->min_width > arg_len) ?
 					flags->min_width : arg_len;
 	shift = (flags->left) ? 0 : flags->field_len - arg_len;
-//	printf("field_len=%zu, arg_len=%zu, shift=%zu\n", flags->field_len, arg_len, shift);
 	if ((str = ft_strnewfill(flags->field_len, ' ')))
 	{
 		while (arg_len--)

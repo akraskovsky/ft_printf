@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/13 19:38:00 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/14 11:40:49 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,17 @@
 static size_t	get_arg_len(t_flags *flags, long long num)
 {
 	size_t	len;
+	int		sign;
 
 	len = 1;
 	if (num == 0 && flags->precision == 0 && flags->precision_set)
-		len = 0;
+		return (0);
+	sign = (num < 0 || flags->sign || flags->first_space) ? 1 : 0; 
 	while (num /= 10)
 		len++;
 	if (flags->precision > len)
 		len = flags->precision;
-	if (num < 0 || flags->sign || flags->first_space)
-		len++;
+	len += sign;
 	if (flags->min_width > len && flags->zero_padding &&
 			!flags->left && !flags->precision_set)
 		len = flags->min_width;
@@ -37,7 +38,6 @@ static char		*arg_to_str(t_flags *flags, long long num)
 	int		sign;
 	size_t	arg_len;
 	size_t	shift;
-
 
 	sign = (num < 0) ? -1 : 1;
 	arg_len = get_arg_len(flags, num);
@@ -52,11 +52,11 @@ static char		*arg_to_str(t_flags *flags, long long num)
 			num /= 10;
 		}
 		if (sign < 0)
-			*str = '-';
+			str[shift] = '-';
 		else if (flags->sign)
-			*str = '+';
+			str[shift] = '+';
 		else if (flags->first_space)
-			*str = ' ';
+			str[shift] = ' ';
 	}
 	return (str);
 }

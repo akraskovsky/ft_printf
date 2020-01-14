@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:49:52 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/13 20:01:15 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/14 13:41:53 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	init_flags(t_flags *flags)
 	flags->mod_long_long = 0;
 	flags->mod_long_double = 0;
 	flags->conversion = 0;
-	flags->arg_len = 0;
 	flags->field_len = 0;
 	return ;
 }
@@ -38,23 +37,27 @@ int     ft_printf(char *str, ...)
 {
 	va_list	ap;
 	t_flags	flags;
-//	char	buff[BUFF_SIZE];
-	char	*ptr;
+	int		length;
+	int		i;
 
-	ptr = str;
+	length = 0;
+	i = 0;
 	va_start(ap, str);
-	while (*ptr != '\0')
-		if (*ptr == '%')
-		{
-			if (!(parse_format(&ptr, &flags, ap)))
-				return (-1);
-		}
+	while (str[i] != '\0')
+		if (str[i] != '%')
+			i++;
 		else
 		{
-			write(1, ptr, 1);
-			ptr++;
-		} 
+			write(1, str, i);
+			length += i;
+			str += i;
+			i = 0;
+			if (!(parse_format(&str, &flags, ap)))
+				return (-1);
+			length += flags.field_len;
+		}
+	write(1, str, i);
+	length += i;
 	va_end(ap);
-//	print_flags(&flags);
-	return (0);
+	return (length);
 }

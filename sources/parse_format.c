@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 17:10:19 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/04 20:47:39 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/14 12:28:59 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,26 @@ void	check_precision(t_flags *flags, char **ptr)
 
 void	check_modifier(t_flags *flags, char **ptr)
 {
+	if (**ptr == 'h' && (*ptr)[1] == 'h')
+		flags->mod_char = 1; 
+	else if (**ptr == 'h' && (*ptr)[1] != 'h')
+		flags->mod_short = 1; 
+	else if (**ptr == 'l' && (*ptr)[1] != 'l')
+		flags->mod_long = 1; 
+	else if (**ptr == 'l' && (*ptr)[1] == 'l')
+		flags->mod_long_long = 1;
+	else if (**ptr == 'L')
+		flags->mod_char = 1;
+	if (flags->mod_short || flags->mod_long || flags->mod_long_double)
+		(*ptr)++;
+	if (flags->mod_char || flags->mod_long_long)
+		(*ptr) += 2;
+	return ;
+}
+
+/*
+void	check_modifier(t_flags *flags, char **ptr)
+{
 	if (**ptr == 'h')
 	{
 		(*ptr)++;
@@ -90,6 +110,7 @@ void	check_modifier(t_flags *flags, char **ptr)
 	}
 	return ;
 }
+*/
 
 int		parse_format(char **ptr, t_flags *flags, va_list ap)
 {
