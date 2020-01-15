@@ -6,19 +6,19 @@
 #    By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 10:53:01 by fprovolo          #+#    #+#              #
-#    Updated: 2020/01/14 15:47:10 by fprovolo         ###   ########.fr        #
+#    Updated: 2020/01/15 19:10:32 by fprovolo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME = ft_printf
+NAME = libftprintf.a
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 SRC_PATH = ./sources/
-SRC_NAME = main.c ft_printf.c parse_format.c get_argument.c get_int.c \
-			get_unsigned.c get_string.c tools.c
+SRC_NAME = ft_printf.c parse_format.c get_argument.c get_int.c \
+			get_unsigned.c get_string.c get_character.c tools.c
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
 OBJ_PATH = ./objects/
@@ -37,7 +37,9 @@ LIB = -lft -L$(LIBFT_PATH)
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ_PATH) $(OBJ)
-	$(CC) -o $(NAME) $(OBJ) $(LIB)
+	@cp $(LIBFT) ./$(NAME)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
 
 $(OBJ_PATH):
 	mkdir -p $(OBJ_PATH)

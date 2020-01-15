@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:58:19 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/14 18:11:58 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/15 13:34:18 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int     main(void)
     int     value;
     int     check;
     
+    ft_printf("\'%.d\'\n", 0);
+       printf("\'%.d\'\n\n", 0);
+
 	check = ft_printf("Percent sign%%is printed%%%%twice\n");
     printf ("check=%d\n", check);
 	   check = printf("Percent sign%%is printed%%%%twice\n");
@@ -36,8 +39,8 @@ int     main(void)
        check = printf("long num=\'%#lx\' \'%lX\' \'%#020lx\'\n", num, num, num);
     printf ("check=%d\n\n", check);
 
-    check = ft_printf("string=\'%s\' \'%15s\' \'%5s\' \'%-10.5s\'\n", str, str, str, str);
+    check = ft_printf("string=\'%s\' \'%15s\' \'%5s\' \'%-10.5s\'\n", str, str, NULL, NULL);
     printf ("check=%d\n", check);
-    check = ft_printf("string=\'%s\' \'%15s\' \'%5s\' \'%-10.5s\'\n", str, str, str, str);
+    check = ft_printf("string=\'%s\' \'%15s\' \'%5s\' \'%-10.5s\'\n", str, str, NULL, NULL);
     printf ("check=%d\n\n", check);
 }

@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 17:10:19 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/14 18:07:00 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/15 18:10:17 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ void	check_precision(t_flags *flags, char **ptr)
 {
 	if (**ptr == '.')
 	{
+		flags->precision_set = 1;
 		(*ptr)++;
 		while (ft_strchr("0123456789", **ptr))
 		{
 			flags->precision = flags->precision * 10 + (**ptr - '0');
-			flags->precision_set = 1;
 			(*ptr)++;
 		}
 	}
@@ -78,62 +78,19 @@ void	check_modifier(t_flags *flags, char **ptr)
 	return ;
 }
 
-/*
-void	check_modifier(t_flags *flags, char **ptr)
-{
-	if (**ptr == 'h')
-	{
-		(*ptr)++;
-		if (**ptr == 'h')
-		{
-			flags->mod_char = 1;
-			(*ptr)++;
-		}
-		else
-			flags->mod_short = 1;
-	}
-	else if (**ptr == 'l')
-	{
-		(*ptr)++;
-		if (**ptr == 'l')
-		{
-			flags->mod_long_long = 1;
-			(*ptr)++;
-		}
-		else
-			flags->mod_long = 1;
-	}
-	else if (**ptr == 'L')
-	{
-		flags->mod_long_double = 1;
-		(*ptr)++;
-	}
-	return ;
-}
-*/
-
 int		parse_format(char **ptr, t_flags *flags, va_list ap)
 {
 	int	ret;
 	
 	ret = 1;
 	*ptr += 1;
-	if (**ptr == '%')
-	{
-		write(1, *ptr, 1);
-		flags->field_len = 1;
-		*ptr += 1;
-	}
-	else
-	{
-		init_flags(flags);
-		check_flags(flags, ptr);
-		check_width(flags, ptr);
-		check_precision(flags, ptr);
-		check_modifier(flags, ptr);
-		flags->conversion = **ptr;
-		(*ptr)++;
-		ret = get_argument(flags, ap);
-	}
+	init_flags(flags);
+	check_flags(flags, ptr);
+	check_width(flags, ptr);
+	check_precision(flags, ptr);
+	check_modifier(flags, ptr);
+	flags->conversion = **ptr;
+	(*ptr)++;
+	ret = get_argument(flags, ap);
 	return (ret);
 }

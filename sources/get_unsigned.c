@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/14 15:43:16 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/15 17:01:58 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static size_t	get_arg_len_u(t_flags *flags, unsigned long long num, int base)
 		len = 0;
 	while (calc_num /= base)
 		len++;
+	if (flags->alt_out && flags->conversion == 'o' && !(len == 1 && num == 0))
+		len++;
 	if (flags->precision > len )
 		len = flags->precision;
-	if (flags->alt_out && (flags->conversion == 'o'))
-		len++;
-	else if (flags->conversion == 'p' || ((flags->alt_out) && (num > 0) &&
+	if (flags->conversion == 'p' || ((flags->alt_out) && (num > 0) &&
 			(flags->conversion == 'x' || flags->conversion == 'X')))
 		len += 2;
 	if (flags->min_width > len && flags->zero_padding &&
@@ -56,11 +56,13 @@ static char		to_char(char c, char conversion)
 
 static char		*unsigned_to_str(t_flags *flags, unsigned long long num)
 {
-	char	*str;
-	size_t	arg_len;
-	size_t	shift;
-	int		base;
+	char				*str;
+	size_t				arg_len;
+	size_t				shift;
+	int					base;
+	unsigned long long	num_bkp;
 
+	num_bkp = num;
 	base = pf_base(flags->conversion);
 	arg_len = get_arg_len_u(flags, num, base);
 	flags->field_len = (flags->min_width > arg_len) ?
@@ -74,7 +76,7 @@ static char		*unsigned_to_str(t_flags *flags, unsigned long long num)
 					to_char((char)(num % base), flags->conversion);
 			num /= base;
 		}
-		if (flags->alt_out && base == 16)
+		if (flags->alt_out && base == 16 && num_bkp != 0)
 			str[shift + 1] = (flags->conversion == 'X') ? 'X' : 'x';
 	}
 	return (str);
