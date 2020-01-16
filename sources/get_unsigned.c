@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/15 17:01:58 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/16 10:23:22 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ static char		*unsigned_to_str(t_flags *flags, unsigned long long num)
 					to_char((char)(num % base), flags->conversion);
 			num /= base;
 		}
-		if (flags->alt_out && base == 16 && num_bkp != 0)
+		if (flags->conversion == 'p' ||
+				(flags->alt_out && base == 16 && num_bkp != 0))
 			str[shift + 1] = (flags->conversion == 'X') ? 'X' : 'x';
 	}
 	return (str);
