@@ -6,13 +6,13 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 14:13:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/15 18:46:40 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/18 14:59:12 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char		*str_to_str(t_flags *flags, char *string)
+static char	*str_to_str(t_flags *flags, char *string)
 {
 	size_t	arg_len;
 	size_t	shift;
@@ -35,11 +35,10 @@ static char		*str_to_str(t_flags *flags, char *string)
 			ft_memcpy(str + shift, string, arg_len);
 		else
 			ft_memcpy(str + shift, "(null)", arg_len);
-	}		
+	}
 	return (str);
 }
 
-/*  conversion s  */
 char		*get_string(t_flags *flags, va_list ap)
 {
 	char	*str;

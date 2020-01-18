@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 17:10:19 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/15 18:10:17 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/18 15:22:44 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	check_flags(t_flags *flags, char **ptr)
 			flags->left = 1;
 		else if (**ptr == '+')
 			flags->sign = 1;
-		else if (**ptr =='\'')
+		else if (**ptr == '\'')
 			flags->thousands = 1;
 		else if (**ptr == ' ')
 			flags->first_space = 1;
@@ -62,11 +62,11 @@ void	check_precision(t_flags *flags, char **ptr)
 void	check_modifier(t_flags *flags, char **ptr)
 {
 	if (**ptr == 'h' && (*ptr)[1] == 'h')
-		flags->mod_char = 1; 
+		flags->mod_char = 1;
 	else if (**ptr == 'h' && (*ptr)[1] != 'h')
-		flags->mod_short = 1; 
+		flags->mod_short = 1;
 	else if (**ptr == 'l' && (*ptr)[1] != 'l')
-		flags->mod_long = 1; 
+		flags->mod_long = 1;
 	else if (**ptr == 'l' && (*ptr)[1] == 'l')
 		flags->mod_long_long = 1;
 	else if (**ptr == 'L')
@@ -81,7 +81,7 @@ void	check_modifier(t_flags *flags, char **ptr)
 int		parse_format(char **ptr, t_flags *flags, va_list ap)
 {
 	int	ret;
-	
+
 	ret = 1;
 	*ptr += 1;
 	init_flags(flags);

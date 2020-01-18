@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:49:52 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/14 14:01:32 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/18 14:57:36 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	init_flags(t_flags *flags)
 	return ;
 }
 
-int     ft_printf(char *str, ...)
+int		ft_printf(char *str, ...)
 {
 	va_list	ap;
 	t_flags	flags;

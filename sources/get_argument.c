@@ -6,13 +6,12 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/15 19:11:49 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/18 14:56:16 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-/* di ouxXp sc f */
 int		get_argument(t_flags *flags, va_list ap)
 {
 	char		*str;
@@ -28,9 +27,6 @@ int		get_argument(t_flags *flags, va_list ap)
 		str = get_string(flags, ap);
 	else if (flags->conversion == 'c' || flags->conversion == '%')
 		str = get_character(flags, ap);
-/*	else if (flags->conversion == 'f')
-		str = get_float(flags, ap);
-*/
 	else
 		return (0);
 	if (str)

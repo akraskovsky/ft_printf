@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/16 10:23:22 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/18 15:04:04 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ static size_t	get_arg_len_u(t_flags *flags, unsigned long long num, int base)
 		len++;
 	if (flags->alt_out && flags->conversion == 'o' && !(len == 1 && num == 0))
 		len++;
-	if (flags->precision > len )
+	if (flags->precision > len)
 		len = flags->precision;
 	if (flags->conversion == 'p' || ((flags->alt_out) && (num > 0) &&
 			(flags->conversion == 'x' || flags->conversion == 'X')))
 		len += 2;
 	if (flags->min_width > len && flags->zero_padding &&
 			!flags->left && !flags->precision_set)
-		len = flags->min_width;	
+		len = flags->min_width;
 	return (len);
 }
 
@@ -83,7 +83,6 @@ static char		*unsigned_to_str(t_flags *flags, unsigned long long num)
 	return (str);
 }
 
-/*  conversions ouxXp  */
 char			*get_unsigned(t_flags *flags, va_list ap)
 {
 	unsigned long long	num;
