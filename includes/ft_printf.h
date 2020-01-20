@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 15:55:22 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/15 19:10:06 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/19 19:19:55 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef	struct	s_flags
 	char		first_space;// ' ' 
 	char		sign;// +
 	char		thousands;//'
+	char		grid;//'.'
 	size_t		min_width;//
 	size_t		precision;//...
 	int			precision_set;
@@ -39,6 +40,12 @@ typedef	struct	s_flags
 	char		conversion;
 	size_t		field_len;
 }				t_flags;
+
+union			u_d_double
+{
+	long double		d;
+	unsigned char	c[16];
+}
 
 int		ft_printf(char *str, ...);
 void	init_flags(t_flags *flags);
