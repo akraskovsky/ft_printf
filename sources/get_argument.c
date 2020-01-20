@@ -3,30 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_argument.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/20 15:52:35 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/20 16:30:09 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		get_argument(t_flags *flags, va_list ap)
-{
-	char	str[20];
-	int		len;
-	int		sign;
-
-	len = 1;
-	while ((num /= 10))
-		len++;
-
-}
-/* spcdiouxXf */
 int		get_argument(t_flags *flags, char **ptr, va_list ap)
 {
-	long long	num;
 	char		*str;
 
 	str = NULL;
@@ -44,10 +31,8 @@ int		get_argument(t_flags *flags, char **ptr, va_list ap)
 		return (0);
 	if (str)
 	{
-		if (flags->)
+		write(1, str, flags->field_len);
+		free(str);		
 	}
-	str = pf_itoa(flags, num)
-//	ft_putnbr(num);
-	(*ptr)++;
 	return (1);
 }
