@@ -6,13 +6,13 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/18 18:07:01 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/20 15:10:58 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*pf_itoa(t_flags *flags, long long num)
+int		get_argument(t_flags *flags, va_list ap)
 {
 	char	str[20];
 	int		len;
@@ -29,21 +29,20 @@ int		get_argument(t_flags *flags, char **ptr, va_list ap)
 	long long	num;
 	char		*str;
 
-	num = 0;
-	if (**ptr == 'd' || **ptr == 'i')
-	{
-		if (flags->mod_char)
-			num = (char)va_arg(ap, int);
-		else if (flags->mod_short)
-			num = (short)va_arg(ap, int);
-		else if (flags->mod_long)
-			num = va_arg(ap, long);
-		else if (flags->mod_long_long)
-			num = va_arg(ap, long long);
-		else
-			num = va_arg(ap, int);
-	}
-	if (**ptr == 'c')
+	str = NULL;
+	if (flags->conversion == 'd' || flags->conversion == 'i')
+		str = get_int(flags, ap);
+	else if (flags->conversion == 'o' || flags->conversion == 'u' ||
+			flags->conversion == 'x' || flags->conversion == 'X' ||
+			flags->conversion == 'p')
+		str = get_unsigned(flags, ap);
+	else if (flags->conversion == 's')
+		str = get_string(flags, ap);
+	else if (flags->conversion == 'c' || flags->conversion == '%')
+		str = get_character(flags, ap);
+	else
+		return (0);
+	if (str)
 	{
 		if (flags->)
 	}

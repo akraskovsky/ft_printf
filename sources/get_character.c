@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_character.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 14:13:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/15 19:08:29 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/20 15:12:57 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char		*char_to_str(t_flags *flags, char c)
+static char	*char_to_str(t_flags *flags, char c)
 {
 	size_t	arg_len;
 	size_t	shift;
@@ -31,7 +31,6 @@ static char		*char_to_str(t_flags *flags, char c)
 	return (str);
 }
 
-/*  conversion s  */
 char		*get_character(t_flags *flags, va_list ap)
 {
 	char	c;

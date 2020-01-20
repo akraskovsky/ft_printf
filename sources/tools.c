@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 11:22:16 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/13 16:36:01 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/18 15:02:20 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ char	*ft_strnewfill(size_t len, char c)
 	if (str != NULL)
 		while (i < len)
 			str[i++] = c;
-		str[len] = '\0';
+	str[len] = '\0';
 	return (str);
 }
