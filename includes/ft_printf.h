@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 15:55:22 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/19 19:19:55 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/20 15:07:23 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ typedef	struct	s_flags
 	int			precision_set;
 	char		mod_char;//char
 	char		mod_short;//short 
-	char		mod_long;//
-	char		mod_long_long;//
-	char		mod_long_double;//
+	char		mod_long;//l
+	char		mod_long_long;//ll
+	char		mod_long_double;//L
 	char		conversion;
 	size_t		field_len;
 }				t_flags;
