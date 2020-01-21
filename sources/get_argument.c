@@ -6,13 +6,13 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/20 16:30:09 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/21 19:02:40 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		get_argument(t_flags *flags, char **ptr, va_list ap)
+int		get_argument(t_flags *flags, va_list ap)
 {
 	char		*str;
 
@@ -27,11 +27,15 @@ int		get_argument(t_flags *flags, char **ptr, va_list ap)
 		str = get_string(flags, ap);
 	else if (flags->conversion == 'c' || flags->conversion == '%')
 		str = get_character(flags, ap);
+/*	else if (flags->conversion == 'f' || flags->conversion == 'F' ||
+			flags->conversion == 'e' || flags->conversion == 'E' ||
+			flags->conversion == 'g' || flags->conversion == 'G')
+		str = ;*/
 	else
 		return (0);
 	if (str)
 	{
-		write(1, str, flags->field_len);
+		write(flags->fd, str, flags->field_len);
 		free(str);		
 	}
 	return (1);

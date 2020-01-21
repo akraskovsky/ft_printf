@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 15:55:22 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/20 15:07:23 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/21 18:01:59 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,17 @@ typedef	struct	s_flags
 	char		mod_long_double;//L
 	char		conversion;
 	size_t		field_len;
+	int			fd;
 }				t_flags;
 
 union			u_d_double
 {
 	long double		d;
 	unsigned char	c[16];
-}
+};
 
 int		ft_printf(char *str, ...);
+int		ft_printf_fd(int fd, char *str, ...);
 void	init_flags(t_flags *flags);
 int		parse_format(char **ptr, t_flags *flags, va_list ap);
 int		get_argument(t_flags *flags, va_list ap);

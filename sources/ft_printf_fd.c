@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,9 @@
 
 #include "ft_printf.h"
 
-int		ft_printf(char *str, ...)
+
+
+int		ft_printf_fd(int fd, char *str, ...)
 {
 	va_list	ap;
 	t_flags	flags;
@@ -20,12 +22,12 @@ int		ft_printf(char *str, ...)
 	int		i;
 
 	length = 0;
-	flags.fd = 1;
+	flags.fd = fd;
 	va_start(ap, str);
 	while (*str != '\0')
 	{
 		i = 0;
-		while (str[i] != '%' && str[i] != '\0')
+		while (str[i] != '%' && str[i] != '{' && str[i] != '\0')
 			i++;
 		write(flags.fd, str, i);
 		length += i;

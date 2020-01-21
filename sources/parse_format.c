@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 17:10:19 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/18 15:22:44 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/21 18:37:11 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	check_modifier(t_flags *flags, char **ptr)
 	else if (**ptr == 'l' && (*ptr)[1] == 'l')
 		flags->mod_long_long = 1;
 	else if (**ptr == 'L')
-		flags->mod_char = 1;
+		flags->mod_long_double = 1;
 	if (flags->mod_short || flags->mod_long || flags->mod_long_double)
 		(*ptr)++;
 	if (flags->mod_char || flags->mod_long_long)

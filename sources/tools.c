@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 11:22:16 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/18 15:02:20 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/21 17:47:32 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,27 @@ void	print_flags(t_flags *flags)
 	printf("mod_long =        %hhd\n", flags->mod_long);
 	printf("mod_long_long =   %hhd\n", flags->mod_long_long);
 	printf("mod_long_double = %hhd\n", flags->mod_long_double);
+}
+
+void	init_flags(t_flags *flags)
+{
+	flags->alt_out = 0;
+	flags->zero_padding = 0;
+	flags->left = 0;
+	flags->first_space = 0;
+	flags->sign = 0;
+	flags->thousands = 0;
+	flags->min_width = 0;
+	flags->precision = 0;
+	flags->precision_set = 0;
+	flags->mod_char = 0;
+	flags->mod_short = 0;
+	flags->mod_long = 0;
+	flags->mod_long_long = 0;
+	flags->mod_long_double = 0;
+	flags->conversion = 0;
+	flags->field_len = 0;
+	return ;
 }
 
 char	*ft_strnewfill(size_t len, char c)
