@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 15:55:22 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/21 18:01:59 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/24 14:54:36 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char	*get_unsigned(t_flags *flags, va_list ap);
 char	*get_string(t_flags *flags, va_list ap);
 char	*get_character(t_flags *flags, va_list ap);
 char	*ft_strnewfill(size_t len, char c);
+int		ft_set_colors(char **ptr, t_flags *flags);
 
 void	print_flags(t_flags *flags);  //*** test function !!! ***//
 
