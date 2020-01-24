@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/20 15:52:35 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/22 15:56:29 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ int		get_argument(t_flags *flags, char **ptr, va_list ap)
 		str = get_string(flags, ap);
 	else if (flags->conversion == 'c' || flags->conversion == '%')
 		str = get_character(flags, ap);
+	else if (flags->conversion == 'f' || flags->conversion == 'F' ||\
+			flags->conversion == 'g' || flags->conversion == 'G' ||\
+			flags->conversion == 'e' || flags->conversion == 'E')
+		get_float_double(flags, ap);
 	else
 		return (0);
 	if (str)

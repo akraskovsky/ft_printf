@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 19:38:29 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/20 15:55:46 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/20 20:38:15 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ char	*mant_from_2_to_10(char *str_mant)
 	return (ten);
 }
 
-char	*calc_mult2(char *res)
+char	*calc_mult2(char *res)//умножение на нужную степень двойки
 {
 	int	len;
 	int	temp;
