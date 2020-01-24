@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_floats.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:03:53 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/23 20:21:53 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/24 17:18:30 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		*get_float_double(t_flags *flags, va_list ap)
+void		get_float_double(t_flags *flags, va_list ap)
 {
 	double				num;
 	long double			i;
@@ -24,12 +24,12 @@ void		*get_float_double(t_flags *flags, va_list ap)
 		num = va_arg(ap, double);
 		flags->field_len = (ft_printf_float_double(num, flags));
 	}		
-	else if (flags->conversion == 'f' || flags->conversion == 'F' \
+	else if ((flags->conversion == 'f' || flags->conversion == 'F') \
 			&& flags->mod_long_double) 
 	{
 		i = va_arg(ap, long double);
 		flags->field_len = (ft_printf_long_double(i, flags));
-	}		
+	}
 }
 
 int		ft_printf_long_double(long double i, t_flags *flags)

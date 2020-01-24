@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_nan_inf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 17:54:59 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/20 15:55:46 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/24 17:36:41 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ char	*put_nan_inf(double i, t_flags flags)
 	else
 		res = ft_strdup("inf");
 	count = 0;
-	if (flags->mod_long_double == 'F' || flags->mod_long_double == 'E' \
-        || flags->mod_long_double == 'G')
+	if (flags.mod_long_double == 'F' || flags.mod_long_double == 'E' \
+        || flags.mod_long_double == 'G')
 	{
 		while (res[count] != '\0')
 		{

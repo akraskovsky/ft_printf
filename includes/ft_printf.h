@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 15:55:22 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/24 15:44:24 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/24 17:31:33 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ union			u_d_double
 };
 
 int		ft_printf(const char *str, ...);
-int		ft_printf_fd(int fd, char *str, ...);
+int		ft_printf_fd(int fd, const char *str, ...);
 void	init_flags(t_flags *flags);
 int		parse_format(char **ptr, t_flags *flags, va_list ap);
 int		get_argument(t_flags *flags, va_list ap);
@@ -58,7 +58,7 @@ char	*get_unsigned(t_flags *flags, va_list ap);
 char	*get_string(t_flags *flags, va_list ap);
 char	*get_character(t_flags *flags, va_list ap);
 char	*ft_strnewfill(size_t len, char c);
-void	*get_float_double(t_flags *flags, va_list ap);
+void	get_float_double(t_flags *flags, va_list ap);
 int		ft_printf_long_double(long double i, t_flags *flags);
 int		ft_printf_float_double(double i, t_flags *flags);
 char	*ft_ld_helper(int *sign, long double i);
@@ -106,6 +106,9 @@ char	*put_dot(char *res, int power);
 int		find_e_helper(int i, int j, char *str);
 void	filler(char *res, char *fill, t_flags flags, int *add);
 int		ft_set_colors(char **ptr, t_flags *flags);
+int		ft_atoi_base(const char *str, int str_base);
+
 void	print_flags(t_flags *flags);  //*** test function !!! ***//
+
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_flag.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:27:58 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/24 15:50:30 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/24 17:22:46 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		flag_f(char *res, t_flags flags, int sign)
 
 	len = ft_strlen(res);
 	len_fill = 0;
-	if (flags.min_width == -1)
+	if (!flags.precision_set)
 		i_width = 0;
 	else
 		i_width = flags.min_width;
@@ -55,7 +55,7 @@ int		flag_e(char *res, int ex, t_flags flags, int sign)
 	add[0] = ex;
 	add[1] = sign;
 	len = ft_strlen(res);
-	if (flags.min_width == -1)
+	if (!flags.precision_set)
 		i_width = 0;
 	else
 		i_width = flags.min_width;

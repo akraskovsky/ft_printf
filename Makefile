@@ -6,7 +6,7 @@
 #    By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 10:53:01 by fprovolo          #+#    #+#              #
-#    Updated: 2020/01/24 14:55:30 by fprovolo         ###   ########.fr        #
+#    Updated: 2020/01/24 17:35:01 by fprovolo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,10 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRC_PATH = ./sources/
 SRC_NAME = ft_printf.c parse_format.c get_argument.c get_int.c \
-			get_unsigned.c get_string.c get_character.c tools.c set_colors.c
+			get_unsigned.c get_string.c get_character.c tools.c set_colors.c \
+			get_floats.c f_dealer.c f_flag.c f_get_binary.c \
+			f_nan_inf.c f_normalize.c f_rounding.c f_tools_mant.c \
+			f_tools_zero.c f_tools.c ft_atoi_base.c
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
 OBJ_PATH = ./objects/
