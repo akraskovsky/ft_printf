@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 15:55:22 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/23 19:58:51 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/24 15:08:11 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,17 @@ typedef	struct	s_flags
 	char		mod_long_double;//L
 	char		conversion;
 	size_t		field_len;
+	int			fd;
 }				t_flags;
 
 union			u_d_double
 {
 	long double		d;
 	unsigned char	c[16];
-}
+};
 
 int		ft_printf(const char *str, ...);
+int		ft_printf_fd(int fd, char *str, ...);
 void	init_flags(t_flags *flags);
 int		parse_format(char **ptr, t_flags *flags, va_list ap);
 int		get_argument(t_flags *flags, va_list ap);

@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:49:52 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/24 15:08:11 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/21 18:01:59 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(const char *str, ...)
+
+
+int		ft_printf_fd(int fd, char *str, ...)
 {
 	va_list	ap;
 	t_flags	flags;
@@ -20,12 +22,12 @@ int		ft_printf(const char *str, ...)
 	int		i;
 
 	length = 0;
-	flags.fd = 1;
+	flags.fd = fd;
 	va_start(ap, str);
 	while (*str != '\0')
 	{
 		i = 0;
-		while (str[i] != '%' && str[i] != '\0')
+		while (str[i] != '%' && str[i] != '{' && str[i] != '\0')
 			i++;
 		write(flags.fd, str, i);
 		length += i;

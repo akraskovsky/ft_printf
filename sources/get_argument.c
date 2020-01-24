@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/22 15:56:29 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/24 15:08:11 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,6 @@
 
 int		get_argument(t_flags *flags, va_list ap)
 {
-	char	str[20];
-	int		len;
-	int		sign;
-
-	len = 1;
-	while ((num /= 10))
-		len++;
-
-}
-/* spcdiouxXf */
-int		get_argument(t_flags *flags, char **ptr, va_list ap)
-{
-	long long	num;
 	char		*str;
 
 	str = NULL;
@@ -48,10 +35,8 @@ int		get_argument(t_flags *flags, char **ptr, va_list ap)
 		return (0);
 	if (str)
 	{
-		if (flags->)
+		write(flags->fd, str, flags->field_len);
+		free(str);		
 	}
-	str = pf_itoa(flags, num)
-//	ft_putnbr(num);
-	(*ptr)++;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 17:10:19 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/18 15:22:44 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/24 14:55:32 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	check_modifier(t_flags *flags, char **ptr)
 	else if (**ptr == 'l' && (*ptr)[1] == 'l')
 		flags->mod_long_long = 1;
 	else if (**ptr == 'L')
-		flags->mod_char = 1;
+		flags->mod_long_double = 1;
 	if (flags->mod_short || flags->mod_long || flags->mod_long_double)
 		(*ptr)++;
 	if (flags->mod_char || flags->mod_long_long)
@@ -80,9 +80,8 @@ void	check_modifier(t_flags *flags, char **ptr)
 
 int		parse_format(char **ptr, t_flags *flags, va_list ap)
 {
-	int	ret;
-
-	ret = 1;
+	if (**ptr == '{')
+		return (ft_set_colors(ptr, flags));
 	*ptr += 1;
 	init_flags(flags);
 	check_flags(flags, ptr);
@@ -91,6 +90,5 @@ int		parse_format(char **ptr, t_flags *flags, va_list ap)
 	check_modifier(flags, ptr);
 	flags->conversion = **ptr;
 	(*ptr)++;
-	ret = get_argument(flags, ap);
-	return (ret);
+	return (get_argument(flags, ap));
 }
