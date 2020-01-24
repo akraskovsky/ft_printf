@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 15:55:22 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/24 15:08:11 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/24 15:44:24 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ int		get_exp(char *all);
 int		find_e(char *str, double num);
 int		flag_f(char *res, t_flags flags, int sign);
 int		flag_e_helper1(int i_width, int len, int *add);
-int		flag_e(char *res, int ex, struct s_tfs data, int sign);
+int		flag_e(char *res, int ex, t_flags flags, int sign);
 char	*width(int len, char c);
-void	filler_f(char *res, char *fill, struct s_tfs data, int sign);
+void	filler_f(char *res, char *fill, t_flags flags, int sign);
 void	round_norm(char *str);
 int		normalize_helper1(char *str);
 void	normalize_helper2(char *str);
@@ -105,11 +105,7 @@ void	without_dot(long double num, char *res);
 char	*put_dot(char *res, int power);
 int		find_e_helper(int i, int j, char *str);
 void	filler(char *res, char *fill, t_flags flags, int *add);
-
-
-
-
-
+int		ft_set_colors(char **ptr, t_flags *flags);
 void	print_flags(t_flags *flags);  //*** test function !!! ***//
 
 #endif

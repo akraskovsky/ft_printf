@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:27:58 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/22 16:40:21 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/24 15:50:30 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ int		flag_f(char *res, t_flags flags, int sign)
 
 	len = ft_strlen(res);
 	len_fill = 0;
-	if (data.width == -1)
+	if (flags.min_width == -1)
 		i_width = 0;
 	else
-		i_width = data.width;
-	if (sign == 1 || data.space == 1 || data.plus == 1)
+		i_width = flags.min_width;
+	if (sign == 1 || flags.first_space == 1 || flags.sign == 1)
 		len++;
-	if (data.grid == 1 && ft_strchr(res, '.') == NULL)
+	if (flags.alt_out == 1 && ft_strchr(res, '.') == NULL)
 		len++;
-	if (data.zero == 1 && data.minus == -1)
-		filler_f(res, width(i_width - len, '0'), data, sign);
+	if (flags.zero_padding == 1 && flags.left == -1)
+		filler_f(res, width(i_width - len, '0'), flags, sign);
 	else
-		filler_f(res, width(i_width - len, ' '), data, sign);
+		filler_f(res, width(i_width - len, ' '), flags, sign);
 	if (len_fill <= i_width - len)
 		len_fill = i_width - len;
 	return (len + len_fill);
@@ -45,7 +45,7 @@ int		flag_e_helper1(int i_width, int len, int *add)
 	return (len);
 }
 
-int		flag_e(char *res, int ex, struct s_tfs data, int sign)
+int		flag_e(char *res, int ex, t_flags flags, int sign)
 {
 	int	len;
 	int	i_width;
@@ -55,22 +55,22 @@ int		flag_e(char *res, int ex, struct s_tfs data, int sign)
 	add[0] = ex;
 	add[1] = sign;
 	len = ft_strlen(res);
-	if (data.width == -1)
+	if (flags.min_width == -1)
 		i_width = 0;
 	else
-		i_width = data.width;
-	if (sign == 1 || data.space == 1 || data.plus == 1)
+		i_width = flags.min_width;
+	if (sign == 1 || flags.first_space == 1 || flags.sign == 1)
 		len++;
-	if (data.grid == 1 && ft_strchr(res, '.') == NULL)
+	if (flags.alt_out == 1 && ft_strchr(res, '.') == NULL)
 		len++;
 	if (add[0] > 99 || add[0] < -99)
 		len = len + 5;
 	else
 		len = len + 4;
-	if (data.zero == 1)
-		filler(res, width(i_width - len, '0'), data, add);
+	if (flags.zero_padding == 1)
+		filler(res, width(i_width - len, '0'), flags, add);
 	else
-		filler(res, width(i_width - len, ' '), data, add);
+		filler(res, width(i_width - len, ' '), flags, add);
 	return (flag_e_helper1(i_width, len, add));
 }
 
@@ -91,22 +91,22 @@ char	*width(int len, char c)
 	return (res);
 }
 
-void	filler_f(char *res, char *fill, struct s_tfs data, int sign)
+void	filler_f(char *res, char *fill, t_flags flags, int sign)
 {
-	if (data.zero == -1 && fill != NULL && data.minus == -1)
+	if (flags.zero_padding == -1 && fill != NULL && flags.left == -1)
 		ft_putstr(fill);
 	if (sign == 1)
 		ft_putchar('-');
-	else if (data.plus == 1)
+	else if (flags.sign == 1)
 		ft_putchar('+');
-	else if (data.space == 1)
+	else if (flags.first_space == 1)
 		ft_putchar(' ');
-	if (data.zero == 1 && fill != NULL && data.minus == -1)
+	if (flags.zero_padding == 1 && fill != NULL && flags.left == -1)
 		ft_putstr(fill);
 	ft_putstr(res);
-	if (data.grid == 1 && ft_strchr(res, '.') == NULL)
+	if (flags.alt_out == 1 && ft_strchr(res, '.') == NULL)
 		ft_putchar('.');
-	if (fill != NULL && data.minus == 1)
+	if (fill != NULL && flags.left == 1)
 		ft_putstr(fill);
 	if (fill != NULL)
 		free(fill);

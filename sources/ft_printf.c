@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:49:52 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/24 15:08:11 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/24 15:13:30 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		ft_printf(const char *str, ...)
 		str += i;
 		if (*str == '\0')
 			return (length);
-		if (!(parse_format(&str, &flags, ap)))
+		if (!(parse_format((char **)&str, &flags, ap)))
 			return (-1);
 		length += flags.field_len;
 	}

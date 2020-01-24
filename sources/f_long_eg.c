@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:19:07 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/20 17:20:01 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/24 16:14:06 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_le_helper1(long double i, char *res, char *all)
 	return (res);
 }
 
-int		ft_le(long double i, struct s_tfs data)
+int		ft_le(long double i, t_flags flags)
 {
 	char				*all;
 	char				*res;
@@ -43,8 +43,8 @@ int		ft_le(long double i, struct s_tfs data)
 	res = NULL;
 	if (i != i || i == +1.0L / 0.0L || i == -1.0L / 0.0L)
 	{
-		res = put_nan_inf(i, data);
-		ex = filler_nan(res, data, sign, all);
+		res = put_nan_inf(i, flags);
+		ex = filler_nan(res, flags, sign, all);
 	}
 	else
 	{
@@ -52,16 +52,16 @@ int		ft_le(long double i, struct s_tfs data)
 		ex = find_e(res, i);
 		if (i != -0.0L || i != 0.0L)
 			res = normalize(res);
-		res = ft_e_helper2(i, res, data.precision);
-		if (data.t == 'G' || data.t == 'g')
+		res = ft_e_helper2(i, res, flags.precision);
+		if (flags.conversion == 'G' || flags.conversion == 'g')
 			res = cut_z(res);
-		ex = flag_e(res, ex, data, sign);
+		ex = flag_e(res, ex, flags, sign);
 	}
 	free(res);
 	return (ex);
 }
 
-int		ft_e(double i, struct s_tfs data)
+int		ft_e(double i, t_flags flags)
 {
 	char				*all;
 	char				*res;
@@ -72,8 +72,8 @@ int		ft_e(double i, struct s_tfs data)
 	res = NULL;
 	if (i != i || i == +1.0 / 0.0 || i == -1.0 / 0.0)
 	{
-		res = put_nan_inf(i, data);
-		ex = filler_nan(res, data, sign, all);
+		res = put_nan_inf(i, flags);
+		ex = filler_nan(res, flags, sign, all);
 	}
 	else
 	{
@@ -81,10 +81,10 @@ int		ft_e(double i, struct s_tfs data)
 		ex = find_e(res, i);
 		if (i != -0.0 || i != 0.0)
 			res = normalize(res);
-		res = ft_e_helper2(i, res, data.precision);
-		if (data.t == 'G' || data.t == 'g')
+		res = ft_e_helper2(i, res, flags.precision);
+		if (flags.conversion == 'G' || flags.conversion == 'g')
 			res = cut_z(res);
-		ex = flag_e(res, ex, data, sign);
+		ex = flag_e(res, ex, flags, sign);
 	}
 	free(res);
 	return (ex);
