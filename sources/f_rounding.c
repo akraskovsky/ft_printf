@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:25:15 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/20 17:26:03 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/27 14:54:45 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,15 +106,15 @@ void	rounding_all(char *mant, int precision)
 	}
 }
 
-char	*bank_rounding(char *mant, int precision)
+char	*bank_rounding(char *mant, size_t precision, int pre_set)
 {
-	int	i;
-	int	j;
-	int	k;
+	int		i;
+	size_t	j;
+	int		k;
 
 	i = 2;
 	j = 0;
-	(precision == -1) ? precision = 6 : precision;
+	(!(pre_set)) ? precision = 6 : precision;
 	while ((mant[i - 1] != '.') && (mant[i] != '\0'))
 		i++;
 	k = i;

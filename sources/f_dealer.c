@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 19:11:50 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/20 15:54:49 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/27 14:52:19 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	without_dot(long double num, char *res)
 
 char	*f_dealer(int exponent, char *all, char *res, long double i)
 {
-	res = mant_multby2(exponent, get_mant(all));//f_get_binary.c
+	res = ft_mant_exp(exponent, ft_mantisa(all));//f_get_binary.c
 	res = cut_zeros_before(res);
 	if (ft_strchr(res, '.') == NULL)
 		without_dot(i, res);
@@ -74,7 +74,7 @@ int		find_e_helper(int i, int j, char *str)
 
 void	filler(char *res, char *fill, t_flags flags, int *add)
 {
-	if (flags.zero_padding == -1 && fill != NULL && flags.left == -1)
+	if (flags.zero_padding == 0 && fill != NULL && flags.left == 0)
 		ft_putstr(fill);
 	if (add[1] == 1)
 		ft_putchar('-');
@@ -85,9 +85,9 @@ void	filler(char *res, char *fill, t_flags flags, int *add)
 	if (flags.zero_padding == 1 && fill != NULL)
 		ft_putstr(fill);
 	ft_putstr(res);
-	if (flags.grid == 1 && ft_strchr(res, '.') == NULL)
+	if (flags.alt_out == 1 && ft_strchr(res, '.') == NULL)
 		ft_putchar('.');
-	(flags.mod_long_double == 'E' || flags.mod_long_double == 'G') \
+	(flags.conversion == 'E' || flags.conversion == 'G') \
         ? ft_putchar('E') : ft_putchar('e');
 	if (add[0] >= 0)
 		ft_putstr("+");

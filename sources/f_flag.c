@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_flag.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:27:58 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/24 17:22:46 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/27 15:23:41 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		flag_f(char *res, t_flags flags, int sign)
 
 	len = ft_strlen(res);
 	len_fill = 0;
-	if (!flags.precision_set)
+	if (!(flags.min_width))
 		i_width = 0;
 	else
 		i_width = flags.min_width;
@@ -28,7 +28,7 @@ int		flag_f(char *res, t_flags flags, int sign)
 		len++;
 	if (flags.alt_out == 1 && ft_strchr(res, '.') == NULL)
 		len++;
-	if (flags.zero_padding == 1 && flags.left == -1)
+	if (flags.zero_padding == 1 && flags.left == 0)
 		filler_f(res, width(i_width - len, '0'), flags, sign);
 	else
 		filler_f(res, width(i_width - len, ' '), flags, sign);
@@ -93,7 +93,7 @@ char	*width(int len, char c)
 
 void	filler_f(char *res, char *fill, t_flags flags, int sign)
 {
-	if (flags.zero_padding == -1 && fill != NULL && flags.left == -1)
+	if (flags.zero_padding == -1 && fill != NULL && flags.left == 0)
 		ft_putstr(fill);
 	if (sign == 1)
 		ft_putchar('-');
@@ -101,7 +101,7 @@ void	filler_f(char *res, char *fill, t_flags flags, int sign)
 		ft_putchar('+');
 	else if (flags.first_space == 1)
 		ft_putchar(' ');
-	if (flags.zero_padding == 1 && fill != NULL && flags.left == -1)
+	if (flags.zero_padding == 1 && fill != NULL && flags.left == 0)
 		ft_putstr(fill);
 	ft_putstr(res);
 	if (flags.alt_out == 1 && ft_strchr(res, '.') == NULL)

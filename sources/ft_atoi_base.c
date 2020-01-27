@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 14:58:51 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/24 17:30:17 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/27 15:37:30 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int					ft_atoi_base(const char *str, int str_base)
 	while (*str && ft_base(*str, str_base) != -1)
 	{
 		res = (res * str_base) + ft_base(*str, str_base);
-		printf("%i\n", res);
 		str++;
 	}
 	return (res * neg);
