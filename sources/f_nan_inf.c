@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_nan_inf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 17:54:59 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/24 17:36:41 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/27 14:23:35 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ char	*put_nan_inf(double i, t_flags flags)
 	else
 		res = ft_strdup("inf");
 	count = 0;
-	if (flags.mod_long_double == 'F' || flags.mod_long_double == 'E' \
-        || flags.mod_long_double == 'G')
+	if (flags.conversion == 'F' || flags.conversion == 'E' \
+        || flags.conversion == 'G')
 	{
 		while (res[count] != '\0')
 		{
@@ -63,7 +63,7 @@ int		filler_nan(char *r, t_flags d, int sign, char *all)
 		&& r[0] != 'n' && r[0] != 'N')
 		len++;
 	fill = width(d.min_width - len, ' ');
-	if (fill != NULL && d.left == -1)
+	if (fill != NULL && d.left == 0)
 		ft_putstr(fill);
 	if (sign == 1 && (r[0] != 'n' && r[0] != 'N'))
 		ft_putchar('-');

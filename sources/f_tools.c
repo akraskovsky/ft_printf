@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 19:38:29 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/20 20:38:15 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/26 20:26:47 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	negative2power(char *res, int power)
 	while (power >= 1)
 	{
 		while (i >= 0)
-		{
+		{ 
 			new_temp = ((res[i] - '0') * 5) / 10;
 			res[i] = (((res[i] - '0') * 5) % 10) + '0' + old_temp;
 			i--;
@@ -80,7 +80,7 @@ char	*calc_negative2power(int power)
 	return (put_dot(res, -power));
 }
 
-char	*mant_from_2_to_10(char *str_mant)
+char	*mant_bin_to_ten(char *str_mant)
 {
 	char	*ten;
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/24 15:08:11 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/27 14:53:50 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		get_argument(t_flags *flags, va_list ap)
 	else if (flags->conversion == 'f' || flags->conversion == 'F' ||\
 			flags->conversion == 'g' || flags->conversion == 'G' ||\
 			flags->conversion == 'e' || flags->conversion == 'E')
-		get_float_double(flags, ap);
+		get_f_double(flags, ap);
 	else
 		return (0);
 	if (str)
