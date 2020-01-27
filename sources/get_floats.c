@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:03:53 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/24 17:18:30 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/27 14:06:35 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		get_float_double(t_flags *flags, va_list ap)
 	
 	i = 0;
 	num = 0;
-	if (flags->conversion == 'f' || flags->conversion == 'F')
+	if ((flags->conversion == 'f' || flags->conversion == 'F') && flags->mod_long_double == 0)
 	{
 		num = va_arg(ap, double);
 		flags->field_len = (ft_printf_float_double(num, flags));
