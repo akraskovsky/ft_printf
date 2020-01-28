@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:51:11 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/24 14:54:52 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/28 15:35:12 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static int	set_ph_colors(char **ptr, t_flags *flags)
 		return (1);
 	*ptr += 5;
 	return (len);
-
 }
 
 static int	set_bg_colors(char **ptr, t_flags *flags)
@@ -71,7 +70,7 @@ int			ft_set_colors(char **ptr, t_flags *flags)
 
 	if (!ft_strncmp(*ptr, "{OFF}", 5))
 	{
-		len = write(flags->fd, "\x1B[40m", 5);
+		len = write(flags->fd, "\x1B[40m\x1B[37m", 10);
 		*ptr += 5;
 	}
 	else if (!ft_strncmp(*ptr, "{BGC:", 5))

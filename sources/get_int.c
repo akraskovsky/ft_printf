@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/18 15:19:25 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/28 18:55:32 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static size_t	get_arg_len(t_flags *flags, long long num)
 
 	len = 1;
 	if (num == 0 && flags->precision == 0 && flags->precision_set)
-		return ((flags->sign) ? 1 : 0);
+		return ((flags->sign || flags->first_space) ? 1 : 0);
 	sign = (num < 0 || flags->sign || flags->first_space) ? 1 : 0;
 	while (num /= 10)
 		len++;

@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 14:13:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/20 18:05:23 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/28 14:05:11 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static char	*char_to_str(t_flags *flags, char c)
 	char	fill;
 
 	arg_len = 1;
-//	if (flags->precision_set && flags->precision < arg_len)
-//		arg_len = flags->precision;
 	flags->field_len = (flags->min_width > arg_len) ?
 			flags->min_width : arg_len;
 	shift = (flags->left) ? 0 : flags->field_len - arg_len;

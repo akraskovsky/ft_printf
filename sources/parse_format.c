@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 17:10:19 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/24 14:55:32 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/28 14:19:55 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 void	check_flags(t_flags *flags, char **ptr)
 {
-	while (ft_strchr("-+' 0#", **ptr))
+	while (ft_strchr("-+ 0#", **ptr))
 	{
 		if (**ptr == '-')
 			flags->left = 1;
 		else if (**ptr == '+')
 			flags->sign = 1;
-		else if (**ptr == '\'')
-			flags->thousands = 1;
 		else if (**ptr == ' ')
 			flags->first_space = 1;
 		else if (**ptr == '0')
@@ -63,12 +61,12 @@ void	check_modifier(t_flags *flags, char **ptr)
 {
 	if (**ptr == 'h' && (*ptr)[1] == 'h')
 		flags->mod_char = 1;
-	else if (**ptr == 'h' && (*ptr)[1] != 'h')
+	else if (**ptr == 'h')
 		flags->mod_short = 1;
-	else if (**ptr == 'l' && (*ptr)[1] != 'l')
-		flags->mod_long = 1;
 	else if (**ptr == 'l' && (*ptr)[1] == 'l')
 		flags->mod_long_long = 1;
+	else if (**ptr == 'l')
+		flags->mod_long = 1;
 	else if (**ptr == 'L')
 		flags->mod_long_double = 1;
 	if (flags->mod_short || flags->mod_long || flags->mod_long_double)
@@ -84,11 +82,21 @@ int		parse_format(char **ptr, t_flags *flags, va_list ap)
 		return (ft_set_colors(ptr, flags));
 	*ptr += 1;
 	init_flags(flags);
-	check_flags(flags, ptr);
-	check_width(flags, ptr);
-	check_precision(flags, ptr);
-	check_modifier(flags, ptr);
-	flags->conversion = **ptr;
-	(*ptr)++;
-	return (get_argument(flags, ap));
+	if (**ptr != '\0')
+	{
+		check_flags(flags, ptr);
+		if (**ptr != '\0')
+			check_width(flags, ptr);
+		if (**ptr != '\0')
+			check_precision(flags, ptr);
+		if (**ptr != '\0')
+			check_modifier(flags, ptr);
+		if (ft_strchr("diouxXpsc%fFgGeE", **ptr))
+		{
+			flags->conversion = **ptr;
+			(*ptr)++;
+			return (get_argument(flags, ap));
+		}
+	}
+	return (1);
 }

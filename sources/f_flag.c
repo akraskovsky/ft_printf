@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_flag.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:27:58 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/27 15:23:41 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/27 17:29:50 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ char	*width(int len, char c)
 
 void	filler_f(char *res, char *fill, t_flags flags, int sign)
 {
-	if (flags.zero_padding == -1 && fill != NULL && flags.left == 0)
+	if (flags.zero_padding == 0 && fill != NULL && flags.left == 0)
 		ft_putstr(fill);
 	if (sign == 1)
 		ft_putchar('-');
