@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/18 15:19:25 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/29 13:02:58 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static size_t	get_arg_len(t_flags *flags, long long num)
 
 	len = 1;
 	if (num == 0 && flags->precision == 0 && flags->precision_set)
-		return ((flags->sign) ? 1 : 0);
+		return ((flags->sign || flags->first_space) ? 1 : 0);
 	sign = (num < 0 || flags->sign || flags->first_space) ? 1 : 0;
 	while (num /= 10)
 		len++;
@@ -32,9 +32,8 @@ static size_t	get_arg_len(t_flags *flags, long long num)
 	return (len);
 }
 
-static char		*arg_to_str(t_flags *flags, long long num)
+static int		arg_to_str(t_flags *flags, long long num)
 {
-	char	*str;
 	int		sign;
 	size_t	arg_len;
 	size_t	shift;
@@ -44,24 +43,24 @@ static char		*arg_to_str(t_flags *flags, long long num)
 	flags->field_len = (flags->min_width > arg_len) ?
 						flags->min_width : arg_len;
 	shift = (flags->left) ? 0 : flags->field_len - arg_len;
-	if ((str = ft_strnewfill(flags->field_len, ' ')))
+	if ((flags->arg = ft_strnewfill(flags->field_len, ' ')))
 	{
 		while (arg_len--)
 		{
-			str[arg_len + shift] = (num % 10 * sign) + '0';
+			flags->arg[arg_len + shift] = (num % 10 * sign) + '0';
 			num /= 10;
 		}
 		if (sign < 0)
-			str[shift] = '-';
+			flags->arg[shift] = '-';
 		else if (flags->sign)
-			str[shift] = '+';
+			flags->arg[shift] = '+';
 		else if (flags->first_space)
-			str[shift] = ' ';
+			flags->arg[shift] = ' ';
 	}
-	return (str);
+	return ((flags->arg) ? 1 : 0);
 }
 
-char			*get_int(t_flags *flags, va_list ap)
+int				get_int(t_flags *flags, va_list ap)
 {
 	long long	num;
 
