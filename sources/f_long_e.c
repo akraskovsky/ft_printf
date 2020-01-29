@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:19:07 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/29 15:27:29 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/29 16:13:12 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int		ft_printf_le_double(long double i, t_flags flags)
 		ex = find_e(res, i);
 		if (i != -0.0L || i != 0.0L)
 			res = normalize(res);
-		res = ft_e_helper2(i, res, flags.precision);
+		res = ft_e_helper2(i, res, &flags);
 		if (flags.conversion == 'G' || flags.conversion == 'g')
 			res = ft_cut_zero(res);
 		ex = flag_e(res, ex, flags, sign);

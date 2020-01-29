@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 11:22:16 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/29 12:20:02 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/29 16:03:06 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	init_flags(t_flags *flags)
 	flags->left = 0;
 	flags->first_space = 0;
 	flags->sign = 0;
-	flags->thousands = 0;
 	flags->min_width = 0;
 	flags->precision = 0;
 	flags->precision_set = 0;

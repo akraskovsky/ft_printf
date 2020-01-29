@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 20:09:39 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/29 15:34:49 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/29 16:17:44 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		ft_printf_g_double(double i, t_flags *flags)
 		else if (flags->precision == 0)
 			flags->precision = 1;
 		ex = ft_get_exp_for_e(i);
-		if (ex < -4 || ex >= flags->precision)
+		if (ex < -4 || ex >= (int)(flags->precision))
 		{
 			flags->precision -= 1;
 			ex = ft_printf_e_double(i, *flags);
@@ -72,7 +72,7 @@ int		ft_printf_lg_double(long double i, t_flags *flags)
 		else if (flags->precision == 0)
 			flags->precision = 1;
 		ex = ft_get_exp_for_le(i);
-		if (ex < -4 || ex >= flags->precision)
+		if (ex < -4 || ex >= (int)(flags->precision))
 		{
 			flags->precision -= 1;
 			ex = ft_printf_le_double(i, *flags);
