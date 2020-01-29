@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 14:46:44 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/20 15:55:46 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/29 19:17:34 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ char	*mult2_mant_exppositive(char *res, char *mant, int exponent)
 	}
 	while (exponent > 0)
 	{
-		calc_mult2(res);//умножение на степень двойки f_tools.c
+		calc_mult2(res);
 		exponent--;
 	}
 	return (res);

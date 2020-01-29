@@ -6,23 +6,23 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 14:58:51 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/28 15:18:42 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/29 19:21:22 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int			ft_isspace(char c)
+static int		ft_isspace(char c)
 {
 	return (c == '\n' || c == '\t' || c == '\r' || c == '\v' || c == '\f' || \
 			c == ' ');
 }
 
-static int			ft_base(char c, int  base)
+static int		ft_base(char c, int base)
 {
-	char	*str;
-	char	*str1;
-	int		i;
+	char				*str;
+	char				*str1;
+	int					i;
 
 	str = "0123456789abcdef";
 	str1 = "0123456789ABCDEF";
@@ -36,16 +36,16 @@ static int			ft_base(char c, int  base)
 	return (-1);
 }
 
-int					ft_atoi_base(const char *str, int str_base)
+int				ft_atoi_base(const char *str, int str_base)
 {
-	int			neg;
-	int			res;
+	int					neg;
+	int					res;
 
 	res = 0;
 	neg = 1;
 	while (*str && ft_isspace(*str))
 		str++;
-	if ( *str == '+' || *str == '-')
+	if (*str == '+' || *str == '-')
 	{
 		neg = -1;
 		str++;
@@ -58,9 +58,9 @@ int					ft_atoi_base(const char *str, int str_base)
 	return (res * neg);
 }
 
-char	*ft_e_helper2(double i, char *res, t_flags *flags)
+char			*ft_e_helper2(double i, char *res, t_flags *flags)
 {
-	res = ft_bank_rounding(res, flags->precision, flags->precision_set );
+	res = ft_bank_rounding(res, flags->precision, flags->precision_set);
 	if (i != -0.0 || i != 0.0)
 		res = cut_zero_before(res);
 	if (res[0] == '1')

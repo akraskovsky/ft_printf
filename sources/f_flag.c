@@ -6,17 +6,17 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:27:58 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/29 16:01:26 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/29 18:51:42 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		flag_f(char *res, t_flags flags, int sign)
+int				flag_f(char *res, t_flags flags, int sign)
 {
-	int	len;
-	int	len_fill;
-	int	i_width;
+	int			len;
+	int			len_fill;
+	int			i_width;
 
 	len = ft_strlen(res);
 	len_fill = 0;
@@ -37,7 +37,7 @@ int		flag_f(char *res, t_flags flags, int sign)
 	return (len + len_fill);
 }
 
-int		flag_e_helper1(int i_width, int len, int *add)
+int				flag_e_helper1(int i_width, int len, int *add)
 {
 	if (0 < i_width - len)
 		len = len + (i_width - len);
@@ -45,11 +45,11 @@ int		flag_e_helper1(int i_width, int len, int *add)
 	return (len);
 }
 
-int		 flag_e(char *res, int ex, t_flags flags, int sign)
+int				flag_e(char *res, int ex, t_flags flags, int sign)
 {
-	int	len;
-	int	i_width;
-	int *add;
+	int			len;
+	int			i_width;
+	int			*add;
 
 	add = (int *)malloc(2);
 	add[0] = ex;
@@ -74,10 +74,10 @@ int		 flag_e(char *res, int ex, t_flags flags, int sign)
 	return (flag_e_helper1(i_width, len, add));
 }
 
-char	*width(int len, char c)
+char			*width(int len, char c)
 {
-	char	*res;
-	int		i;
+	char		*res;
+	int			i;
 
 	if (len <= 0)
 		return (NULL);
@@ -91,7 +91,7 @@ char	*width(int len, char c)
 	return (res);
 }
 
-void	filler_f(char *res, char *fill, t_flags flags, int sign)
+void			filler_f(char *res, char *fill, t_flags flags, int sign)
 {
 	if (flags.zero_padding == 0 && fill != NULL && flags.left == 0)
 		ft_putstr(fill);

@@ -6,35 +6,36 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:19:07 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/29 16:13:12 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/29 19:16:37 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		get_ef_double(t_flags *flags, va_list ap)
+void			get_ef_double(t_flags *flags, va_list ap)
 {
 	double				num;
 	long double			i;
-	
+
 	i = 0;
 	num = 0;
-	if ((flags->conversion == 'e' || flags->conversion == 'E') && !(flags->mod_long_double))
+	if ((flags->conversion == 'e' || flags->conversion == 'E') && \
+		!(flags->mod_long_double))
 	{
 		num = va_arg(ap, double);
 		flags->field_len = (ft_printf_e_double(num, *flags));
-	}		
+	}
 	else if ((flags->conversion == 'e' || flags->conversion == 'E') \
-			&& flags->mod_long_double) 
+		&& flags->mod_long_double)
 	{
 		i = va_arg(ap, long double);
 		flags->field_len = (ft_printf_le_double(i, *flags));
 	}
 }
 
-char	*ft_le_helper1(long double i, char *res, char *all)
+char			*ft_le_helper1(long double i, char *res, char *all)
 {
-	int	ex;
+	int					ex;
 
 	if (i == 0.0 || i == -0.0)
 	{
@@ -52,7 +53,7 @@ char	*ft_le_helper1(long double i, char *res, char *all)
 	return (res);
 }
 
-int		ft_printf_le_double(long double i, t_flags flags)
+int				ft_printf_le_double(long double i, t_flags flags)
 {
 	char				*all;
 	char				*res;
@@ -81,7 +82,7 @@ int		ft_printf_le_double(long double i, t_flags flags)
 	return (ex);
 }
 
-int		ft_printf_e_double(double i, t_flags flags)
+int				ft_printf_e_double(double i, t_flags flags)
 {
 	char				*all;
 	char				*res;
@@ -110,7 +111,7 @@ int		ft_printf_e_double(double i, t_flags flags)
 	return (ex);
 }
 
-int		ft_get_exp_for_le(long double i)
+int				ft_get_exp_for_le(long double i)
 {
 	int					ex;
 	union u_a_double	u_double;
