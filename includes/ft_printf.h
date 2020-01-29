@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 15:55:22 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/28 14:13:42 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/29 15:29:32 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef	struct	s_flags
 	char		conversion;
 	size_t		field_len;
 	int			fd;
+	char		*arg;
 }				t_flags;
 
 union			u_a_double
@@ -52,10 +53,10 @@ int				ft_printf_fd(int fd, const char *str, ...);
 void			init_flags(t_flags *flags);
 int				parse_format(char **ptr, t_flags *flags, va_list ap);
 int				get_argument(t_flags *flags, va_list ap);
-char			*get_int(t_flags *flags, va_list ap);
-char			*get_unsigned(t_flags *flags, va_list ap);
-char			*get_string(t_flags *flags, va_list ap);
-char			*get_character(t_flags *flags, va_list ap);
+int				get_int(t_flags *flags, va_list ap);
+int				get_unsigned(t_flags *flags, va_list ap);
+int				get_string(t_flags *flags, va_list ap);
+int				get_character(t_flags *flags, va_list ap);
 char			*ft_strnewfill(size_t len, char c);
 void			get_f_double(t_flags *flags, va_list ap);
 int				ft_printf_l_double(long double i, t_flags *flags);

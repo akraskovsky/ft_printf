@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/18 15:04:04 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/29 13:02:58 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,8 @@ static char		to_char(char c, char conversion)
 	return (c + 87);
 }
 
-static char		*unsigned_to_str(t_flags *flags, unsigned long long num)
+static int		unsigned_to_str(t_flags *flags, unsigned long long num)
 {
-	char				*str;
 	size_t				arg_len;
 	size_t				shift;
 	int					base;
@@ -68,22 +67,22 @@ static char		*unsigned_to_str(t_flags *flags, unsigned long long num)
 	flags->field_len = (flags->min_width > arg_len) ?
 					flags->min_width : arg_len;
 	shift = (flags->left) ? 0 : flags->field_len - arg_len;
-	if ((str = ft_strnewfill(flags->field_len, ' ')))
+	if ((flags->arg = ft_strnewfill(flags->field_len, ' ')))
 	{
 		while (arg_len--)
 		{
-			str[arg_len + shift] =
+			flags->arg[arg_len + shift] =
 					to_char((char)(num % base), flags->conversion);
 			num /= base;
 		}
 		if (flags->conversion == 'p' ||
 				(flags->alt_out && base == 16 && num_bkp != 0))
-			str[shift + 1] = (flags->conversion == 'X') ? 'X' : 'x';
+			flags->arg[shift + 1] = (flags->conversion == 'X') ? 'X' : 'x';
 	}
-	return (str);
+	return ((flags->arg) ? 1 : 0);
 }
 
-char			*get_unsigned(t_flags *flags, va_list ap)
+int			get_unsigned(t_flags *flags, va_list ap)
 {
 	unsigned long long	num;
 
