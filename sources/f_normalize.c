@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:23:42 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/20 17:24:31 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/29 15:05:49 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,28 @@ char	*normalize(char *str)
 		res = str;
 	}
 	return (res);
+}
+
+int		ft_get_exp_for_e(double i)
+{
+	int					ex;
+	union u_a_double	u_double;
+	char				*all;
+	char				*res;
+
+	u_double.a = i;
+	all = get_double_bin(u_double);
+	{
+		ex = ft_exponent(all);
+		if (i != 2.0 && i != -2.0)
+		{
+			res = ft_mant_exp(ex, ft_mantisa(all));
+			res = cut_zeros_before(res);
+		}
+		else
+			res = ft_strdup("02.0");
+	}
+	ex = find_e(res, i);
+	free(res);
+	return (ex);
 }

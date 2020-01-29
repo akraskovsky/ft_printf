@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:27:58 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/27 16:43:07 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/28 16:04:05 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		flag_e_helper1(int i_width, int len, int *add)
 	return (len);
 }
 
-int		flag_e(char *res, int ex, t_flags flags, int sign)
+int		 flag_e(char *res, int ex, t_flags flags, int sign)
 {
 	int	len;
 	int	i_width;
@@ -55,7 +55,7 @@ int		flag_e(char *res, int ex, t_flags flags, int sign)
 	add[0] = ex;
 	add[1] = sign;
 	len = ft_strlen(res);
-	if (!flags.precision_set)
+	if (!(flags.min_width))
 		i_width = 0;
 	else
 		i_width = flags.min_width;

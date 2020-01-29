@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:03:53 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/27 16:33:31 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/28 14:45:13 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ void		get_f_double(t_flags *flags, va_list ap)
 		i = va_arg(ap, long double);
 		flags->field_len = (ft_printf_l_double(i, flags));
 	}
+	else if (flags->conversion == 'g' || flags->conversion == 'G')
+		get_gf_double(flags, ap);
+	else if (flags->conversion == 'e' || flags->conversion == 'E') 
+		get_ef_double(flags, ap);
 }
 
 int		ft_printf_l_double(long double i, t_flags *flags)
@@ -43,8 +47,8 @@ int		ft_printf_l_double(long double i, t_flags *flags)
 	all = ft_char_from_union(&sign, i);//ld -> in massiv char throw union
 	if (i != i || i == +1.0 / 0.0 || i == -1.0 / 0.0)
 	{
-		res = put_nan_inf(i, *flags);//f_nan_inf.c NAN INF
-		exponent = filler_nan(res, *flags, sign, all);//f_nan_inf.c
+		res = ft_nan_inf(i, *flags);//f_nan_inf.c NAN INF
+		exponent = ft_nan(res, *flags, sign, all);//f_nan_inf.c
 	}
 	else
 	{
@@ -92,9 +96,9 @@ char	*ld_char_ten(long double i, char *all, char *res, t_flags *flags)
 		else
 			res = ft_strdup("02.0");
 	}
-	res = bank_rounding(res, flags->precision, flags->precision_set);//банковское округление
+	res = ft_bank_rounding(res, flags->precision, flags->precision_set);//банковское округление
 	if (flags->conversion == 'G' || flags->conversion == 'g' \
-        || flags->conversion == 55)
-		res = cut_z(res);// работа с флагами
+        || ((flags->mod_long_double) && (flags->conversion == 'G' || flags->conversion == 'g')))
+		res = ft_cut_zero(res);
 	return (res);
 }

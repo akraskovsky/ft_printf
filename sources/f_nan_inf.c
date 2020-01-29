@@ -6,13 +6,13 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 17:54:59 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/27 14:23:35 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/28 14:42:41 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*put_nan_inf(double i, t_flags flags)
+char	*ft_nan_inf(double i, t_flags flags)
 {
 	char	*res;
 	int		count;
@@ -50,7 +50,7 @@ int		filler_nan_helper(char *res, char *fill, t_flags d)
 	return (0);
 }
 
-int		filler_nan(char *r, t_flags d, int sign, char *all)
+int		ft_nan(char *r, t_flags d, int sign, char *all)
 {
 	int		len;
 	char	*fill;

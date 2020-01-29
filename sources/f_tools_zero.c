@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:17:04 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/20 17:17:51 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/27 18:53:37 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	*cut_z_after(char *mant)
 	return (newstr);
 }
 
-char	*cut_z(char *res)
+char	*ft_cut_zero(char *res)
 {
 	char	*new;
 	int		i;

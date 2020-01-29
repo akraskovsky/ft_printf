@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:25:15 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/27 14:54:45 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/27 18:57:11 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	rounding_all(char *mant, int precision)
 	}
 }
 
-char	*bank_rounding(char *mant, size_t precision, int pre_set)
+char	*ft_bank_rounding(char *mant, size_t precision, int pre_set)
 {
 	int		i;
 	size_t	j;

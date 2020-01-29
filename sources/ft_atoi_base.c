@@ -6,12 +6,11 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 14:58:51 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/27 15:37:30 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/28 15:18:42 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "ft_printf.h"
 
 static int			ft_isspace(char c)
 {
@@ -57,4 +56,14 @@ int					ft_atoi_base(const char *str, int str_base)
 		str++;
 	}
 	return (res * neg);
+}
+
+char	*ft_e_helper2(double i, char *res, t_flags *flags)
+{
+	res = ft_bank_rounding(res, flags->precision, flags->precision_set );
+	if (i != -0.0 || i != 0.0)
+		res = cut_zero_before(res);
+	if (res[0] == '1')
+		round_norm(res);
+	return (res);
 }
