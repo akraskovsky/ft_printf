@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 17:54:59 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/28 14:42:41 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/29 18:58:44 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_nan_inf(double i, t_flags flags)
 		res = ft_strdup("inf");
 	count = 0;
 	if (flags.conversion == 'F' || flags.conversion == 'E' \
-        || flags.conversion == 'G')
+		|| flags.conversion == 'G')
 	{
 		while (res[count] != '\0')
 		{

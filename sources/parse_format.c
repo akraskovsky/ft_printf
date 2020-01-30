@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_format.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 17:10:19 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/29 15:29:32 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/29 19:43:15 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	check_precision(t_flags *flags, char **ptr, va_list ap)
 static void	check_width(t_flags *flags, char **ptr, va_list ap)
 {
 	int		width;
-	
+
 	while (ft_isdigit(**ptr) || **ptr == '*')
 	{
 		if (**ptr == '*')

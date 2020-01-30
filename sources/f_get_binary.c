@@ -6,13 +6,13 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 15:54:44 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/26 20:26:43 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/01/29 19:01:08 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*get_double_bin(union u_a_double u_double)//massiv char trow union
+char	*get_double_bin(union u_a_double u_double)
 {
 	char	*all;
 	int		count;
@@ -35,10 +35,10 @@ char	*get_double_bin(union u_a_double u_double)//massiv char trow union
 	return (all);
 }
 
-char	*ft_mantisa(char *all)//берем мантиссу
+char	*ft_mantisa(char *all)
 {
 	int		i;
-	char	*str_man;//массив для байт мантиссы
+	char	*str_man;
 
 	str_man = ft_strnew(65);
 	i = 0;
@@ -48,7 +48,7 @@ char	*ft_mantisa(char *all)//берем мантиссу
 		i++;
 	}
 	free(all);
-	str_man = mant_bin_to_ten(str_man);//f_tools.c
+	str_man = mant_bin_to_ten(str_man);
 	str_man[0] = '1';
 	return (str_man);
 }
@@ -58,14 +58,14 @@ char	*ft_mant_exp(int exponent, char *str_man)
 	char	*mant;
 	int		count;
 
-	mant = ft_strnew(5002);//пустой массив для вычислений размеров
+	mant = ft_strnew(5002);
 	count = 0;
 	while (count <= 5000)
 		mant[count++] = '0';
 	if (exponent > 0)
-		mant = mult2_mant_exppositive(mant, str_man, exponent);//f_tools_mant мантисса в степени +эксп.
+		mant = mult2_mant_exppositive(mant, str_man, exponent);
 	else if (exponent < 0)
-		mant = mult2_mant_expnegative(mant, str_man, exponent);//f_tools_mant-мантисса в степени -эксп.
+		mant = mult2_mant_expnegative(mant, str_man, exponent);
 	else if (exponent == 0)
 	{
 		free(mant);
@@ -77,9 +77,9 @@ char	*ft_mant_exp(int exponent, char *str_man)
 	return (mant);
 }
 
-int		ft_exponent(char *all)//вычисляем экспоненту
+int		ft_exponent(char *all)
 {
-	char	*str_exp;//байты экспоненты
+	char	*str_exp;
 	int		i;
 	int		exponent;
 
@@ -87,10 +87,10 @@ int		ft_exponent(char *all)//вычисляем экспоненту
 	i = 0;
 	while (i < 15)
 	{
-		str_exp[i] = all[i + 1];//байты ответственные за экспоненту
+		str_exp[i] = all[i + 1];
 		i++;
 	}
-	exponent = ft_atoi_base(str_exp, 2);//десятичное число
+	exponent = ft_atoi_base(str_exp, 2);
 	free(str_exp);
 	exponent -= 16383;
 	return (exponent);
@@ -123,4 +123,3 @@ int		find_e(char *str, double num)
 		return (j);
 	}
 }
-

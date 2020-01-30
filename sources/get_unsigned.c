@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_unsigned.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/29 13:02:58 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/29 19:42:05 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int		unsigned_to_str(t_flags *flags, unsigned long long num)
 	return ((flags->arg) ? 1 : 0);
 }
 
-int			get_unsigned(t_flags *flags, va_list ap)
+int				get_unsigned(t_flags *flags, va_list ap)
 {
 	unsigned long long	num;
 

@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_string.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 14:13:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/29 13:02:58 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/01/29 19:29:37 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-//static char	*str_to_str(t_flags *flags, char *string)
-int			get_string(t_flags *flags, va_list ap)
+int				get_string(t_flags *flags, va_list ap)
 {
 	char	*string;
 	size_t	arg_len;
@@ -40,13 +39,3 @@ int			get_string(t_flags *flags, va_list ap)
 	}
 	return ((flags->arg) ? 1 : 0);
 }
-
-/*
-int			get_string(t_flags *flags, va_list ap)
-{
-	char	*str;
-
-	str = va_arg(ap, char *);
-	return (str_to_str(flags, str));
-}
-*/
