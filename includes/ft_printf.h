@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 15:55:22 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/02/03 18:47:58 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/02/03 19:04:46 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ char			*ft_e_helper2(double i, char *res, t_flags *flags);
 char			*ft_le_helper1(long double i, char *res, char *all);
 int				ft_get_exp_for_e(double i);
 int				ft_get_exp_for_le(long double i);
+void			rounding_dot_5(char *mant, int i);
 
 #endif

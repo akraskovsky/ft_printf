@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 14:58:51 by jmalik            #+#    #+#             */
-/*   Updated: 2020/02/02 20:20:12 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/02/03 19:15:15 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,25 @@ char			*ft_e_helper2(double i, char *res, t_flags *flags)
 	if (res[0] == '1')
 		round_norm(res);
 	return (res);
+}
+
+void			rounding_dot_5(char *mant, int i)
+{
+	if (mant[i] > '5')
+	{
+		if (mant[i - 1] != '.')
+			mant[i - 1] += 1;
+		else
+			mant[i - 2] += 1;
+	}
+	else if (mant[i] == '5' && mant[i - 1] != '.')
+	{
+		if ((mant[i - 1] - '0') % 2 == 1)
+			mant[i - 1] += 1;
+	}
+	else if (mant[i] == '5' && mant[i - 1] == '.')
+	{
+		if (((mant[i - 2] - '0') % 2 == 1))
+			mant[i - 2] += 1;
+	}
 }
