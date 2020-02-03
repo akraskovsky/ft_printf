@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:17:04 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/27 18:53:37 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/02/03 14:40:17 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ char	*cut_z_after(char *mant)
 		i++;
 	}
 	free(mant);
+//	printf("i=%d, newstr=\'%s\'\n", i, newstr);
 	return (newstr);
 }
 

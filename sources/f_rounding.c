@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:25:15 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/27 18:57:11 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/02/03 16:43:40 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,14 @@ void	tryrounding(char *mant, int p)
 		i++;
 	i = i + p;
 	len = ft_strlen(mant) - 1;
-	while (len > i)
+	if (mant[i] == '5')
 	{
-		if (mant[len] > '5' || (mant[len] == '5' &&
-			(mant[len - 1] - '0' + temp % 2 == 1)))
-			temp = 1;
-		len--;
+		while (len > i)
+		{
+			if (mant[len] > '0' && mant[len] <= '9')
+				temp = 1;
+			len--;
+		}
 	}
 	if (temp == 1)
 		mant[i] += 1;
@@ -90,11 +92,23 @@ void	rounding_all(char *mant, int precision)
 		i++;
 	i += precision;
 	tryrounding(mant, precision);
-	if (mant[i] > '5' || (mant[i] == '5' && (mant[i - 1] - '0' % 2 == 1)))
+	if (mant[i] > '5')
 	{
 		if (mant[i - 1] != '.')
 			mant[i - 1] += 1;
 		else
+			mant[i - 2] += 1;
+		more_rounding(mant, i - 1);
+	}
+	else if (mant[i] == '5' && (mant[i - 1] != '.'))
+	{
+		if (mant[i - 1] - '0' % 2 == 1)
+			mant[i - 1] += 1;
+		more_rounding(mant, i - 1);
+	}		
+	else if (mant[i] == '5' && mant[i - 1] == '.')
+	{
+		if (((mant[i - 2] - '0') % 2 == 1))
 			mant[i - 2] += 1;
 		more_rounding(mant, i - 1);
 	}

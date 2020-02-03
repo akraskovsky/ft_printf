@@ -6,12 +6,14 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 15:55:22 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/29 18:47:00 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/02/03 13:48:33 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
+# include <stdio.h> // test
 
 # include <stdlib.h>
 # include <unistd.h>
