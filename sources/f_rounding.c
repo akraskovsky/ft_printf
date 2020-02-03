@@ -6,7 +6,7 @@
 /*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:25:15 by jmalik            #+#    #+#             */
-/*   Updated: 2020/02/03 16:43:40 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/02/03 18:47:11 by jmalik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,20 +98,18 @@ void	rounding_all(char *mant, int precision)
 			mant[i - 1] += 1;
 		else
 			mant[i - 2] += 1;
-		more_rounding(mant, i - 1);
 	}
 	else if (mant[i] == '5' && (mant[i - 1] != '.'))
 	{
-		if (mant[i - 1] - '0' % 2 == 1)
+		if ((mant[i - 1] - '0') % 2 == 1)
 			mant[i - 1] += 1;
-		more_rounding(mant, i - 1);
 	}		
 	else if (mant[i] == '5' && mant[i - 1] == '.')
 	{
 		if (((mant[i - 2] - '0') % 2 == 1))
 			mant[i - 2] += 1;
-		more_rounding(mant, i - 1);
 	}
+	more_rounding(mant, i - 1);
 	j = ft_strlen(mant);
 	while (i < j)
 	{
