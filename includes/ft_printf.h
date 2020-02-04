@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 15:55:22 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/02/03 19:04:46 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/02/04 13:35:27 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,6 @@ char			*ft_le_helper1(long double i, char *res, char *all);
 int				ft_get_exp_for_e(double i);
 int				ft_get_exp_for_le(long double i);
 void			rounding_dot_5(char *mant, int i);
+void			trim_length(t_flags *flags);
 
 #endif

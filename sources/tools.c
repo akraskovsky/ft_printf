@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 11:22:16 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/29 16:03:06 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/02/04 13:34:57 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,16 @@ char	*ft_strnewfill(size_t len, char c)
 			str[i++] = c;
 	str[len] = '\0';
 	return (str);
+}
+
+void	trim_length(t_flags *flags)
+{
+	if (flags->precision > 2147483647)
+	{
+		flags->precision = 0;
+		flags->precision_set = 0;
+	}
+	if (flags->min_width > 2147483647)
+		flags->min_width = 0;
+	return ;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:49:52 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/24 15:13:30 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/02/04 12:55:34 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		ft_printf(const char *str, ...)
 	length = 0;
 	flags.fd = 1;
 	va_start(ap, str);
-	while (*str != '\0')
+	while (str != NULL && *str != '\0')
 	{
 		i = 0;
 		while (str[i] != '%' && str[i] != '\0')
