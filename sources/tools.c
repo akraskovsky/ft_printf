@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 11:22:16 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/02/04 13:34:57 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/02/04 18:44:24 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	init_flags(t_flags *flags)
 	flags->mod_long = 0;
 	flags->mod_long_long = 0;
 	flags->mod_long_double = 0;
+	flags->mod_max = 0;
+	flags->mod_size_t = 0;
 	flags->conversion = 0;
 	flags->field_len = 0;
 	flags->arg = NULL;

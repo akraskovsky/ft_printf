@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   get_unsigned.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/29 19:42:05 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/02/05 13:05:11 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static size_t	get_arg_len_u(t_flags *flags, unsigned long long num, int base)
+static size_t	get_arg_len_u(t_flags *flags, uintmax_t num, int base)
 {
-	size_t				len;
-	unsigned long long	calc_num;
+	size_t		len;
+	uintmax_t	calc_num;
 
 	len = 1;
 	calc_num = num;
@@ -54,12 +54,12 @@ static char		to_char(char c, char conversion)
 	return (c + 87);
 }
 
-static int		unsigned_to_str(t_flags *flags, unsigned long long num)
+static int		unsigned_to_str(t_flags *flags, uintmax_t num)
 {
-	size_t				arg_len;
-	size_t				shift;
-	int					base;
-	unsigned long long	num_bkp;
+	size_t		arg_len;
+	size_t		shift;
+	int			base;
+	uintmax_t	num_bkp;
 
 	num_bkp = num;
 	base = pf_base(flags->conversion);
@@ -84,7 +84,7 @@ static int		unsigned_to_str(t_flags *flags, unsigned long long num)
 
 int				get_unsigned(t_flags *flags, va_list ap)
 {
-	unsigned long long	num;
+	uintmax_t	num;
 
 	num = 0;
 	if (flags->conversion == 'p')
@@ -97,6 +97,10 @@ int				get_unsigned(t_flags *flags, va_list ap)
 		num = va_arg(ap, unsigned long);
 	else if (flags->mod_long_long)
 		num = va_arg(ap, unsigned long long);
+	else if (flags->mod_max)
+		num = va_arg(ap, uintmax_t);
+	else if (flags->mod_size_t)
+		num = (uintmax_t)va_arg(ap, size_t);
 	else
 		num = (unsigned int)va_arg(ap, unsigned int);
 	return (unsigned_to_str(flags, num));

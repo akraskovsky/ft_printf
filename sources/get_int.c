@@ -6,13 +6,13 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/01/29 13:02:58 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/02/05 13:05:11 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static size_t	get_arg_len(t_flags *flags, long long num)
+static size_t	get_arg_len(t_flags *flags, intmax_t num)
 {
 	size_t	len;
 	int		sign;
@@ -32,7 +32,7 @@ static size_t	get_arg_len(t_flags *flags, long long num)
 	return (len);
 }
 
-static int		arg_to_str(t_flags *flags, long long num)
+static int		arg_to_str(t_flags *flags, intmax_t num)
 {
 	int		sign;
 	size_t	arg_len;
@@ -62,7 +62,7 @@ static int		arg_to_str(t_flags *flags, long long num)
 
 int				get_int(t_flags *flags, va_list ap)
 {
-	long long	num;
+	intmax_t	num;
 
 	num = 0;
 	if (flags->mod_char)
@@ -73,6 +73,10 @@ int				get_int(t_flags *flags, va_list ap)
 		num = va_arg(ap, long);
 	else if (flags->mod_long_long)
 		num = va_arg(ap, long long);
+	else if (flags->mod_max)
+		num = va_arg(ap, intmax_t);
+	else if (flags->mod_size_t)
+		num = va_arg(ap, size_t);
 	else
 		num = va_arg(ap, int);
 	return (arg_to_str(flags, num));

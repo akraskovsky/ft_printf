@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 17:10:19 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/02/04 13:36:39 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/02/05 13:30:00 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ static void	check_precision(t_flags *flags, char **ptr, va_list ap)
 		if (**ptr == '*')
 		{
 			prec = va_arg(ap, int);
-			flags->precision = (prec >= 0) ? prec : flags->precision;
+			flags->precision = (prec >= 0) ? prec : 0;
+			if (prec < 0)
+				flags->precision_set = 0;
 			(*ptr)++;
 		}
 		if (ft_isdigit(**ptr))
@@ -55,7 +57,6 @@ static void	check_precision(t_flags *flags, char **ptr, va_list ap)
 			}
 		}
 	}
-	trim_length(flags);
 	return ;
 }
 
@@ -82,9 +83,9 @@ static void	check_width(t_flags *flags, char **ptr, va_list ap)
 			}
 		}
 	}
-	trim_length(flags);
 	if (**ptr == '.')
 		check_precision(flags, ptr, ap);
+	trim_length(flags);
 	return ;
 }
 
@@ -100,7 +101,12 @@ static void	check_modifier(t_flags *flags, char **ptr)
 		flags->mod_long = 1;
 	else if (**ptr == 'L')
 		flags->mod_long_double = 1;
-	if (flags->mod_short || flags->mod_long || flags->mod_long_double)
+	else if (**ptr == 'j')
+		flags->mod_max = 1;
+	else if (**ptr == 'z')
+		flags->mod_size_t = 1;
+	if (flags->mod_short || flags->mod_long || flags->mod_long_double
+			|| flags->mod_max || flags->mod_size_t)
 		(*ptr)++;
 	if (flags->mod_char || flags->mod_long_long)
 		(*ptr) += 2;
@@ -116,7 +122,7 @@ int			parse_format(char **ptr, t_flags *flags, va_list ap)
 	check_flags(flags, ptr);
 	check_width(flags, ptr, ap);
 	check_modifier(flags, ptr);
-	if (ft_strchr("diouxXpsc%fFgGeE", **ptr) && **ptr != '\0')
+	if (ft_strchr("dDioOuUxXpsc%fFgGeE", **ptr) && **ptr != '\0')
 	{
 		flags->conversion = **ptr;
 		(*ptr)++;

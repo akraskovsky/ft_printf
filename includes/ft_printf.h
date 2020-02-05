@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 15:55:22 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/02/04 13:35:27 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/02/04 18:44:32 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef	struct	s_flags
 	char		mod_long;
 	char		mod_long_long;
 	char		mod_long_double;
+	char		mod_max;
+	char		mod_size_t;
 	char		conversion;
 	size_t		field_len;
 	int			fd;
