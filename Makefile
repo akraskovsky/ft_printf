@@ -6,7 +6,7 @@
 #    By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 10:53:01 by fprovolo          #+#    #+#              #
-#    Updated: 2020/01/29 16:09:20 by jmalik           ###   ########.fr        #
+#    Updated: 2020/02/05 13:49:13 by fprovolo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ $(LIBFT):
 	make -C $(LIBFT_PATH)
 
 clean:
-	/bin/rm -rf $(OBJ)
+	/bin/rm -rf $(OBJ_PATH)
 	make -C $(LIBFT_PATH) clean
 
 fclean: clean
