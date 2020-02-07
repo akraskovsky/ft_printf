@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   f_tools.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 19:38:29 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/29 19:23:08 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/02/07 15:11:22 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ char	*calc_add(char *two, char *res)
 	int temp;
 
 	i = ft_strlen(two) - 1;
+	temp = 0;
 	while (i > 1)
 	{
 		res[i] = ((two[i] - '0') + (res[i] - '0')) + '0';
@@ -88,8 +89,6 @@ char	*mant_bin_to_ten(char *str_mant)
 
 	ten = ft_strnew(5002);
 	i = 0;
-	ten[0] = '0';
-	ten[1] = '.';
 	while (i <= 5000)
 		ten[i++] = '0';
 	j = 0;
@@ -111,6 +110,7 @@ char	*calc_mult2(char *res)
 	int	temp;
 
 	len = ft_strlen(res) - 1;
+	temp = 0;
 	while (len >= 0)
 	{
 		if (res[len] == '.')

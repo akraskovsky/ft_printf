@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_floats.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmalik <jmalik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:03:53 by jmalik            #+#    #+#             */
-/*   Updated: 2020/01/29 19:46:19 by jmalik           ###   ########.fr       */
+/*   Updated: 2020/02/05 16:01:40 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int			ft_printf_l_double(long double i, t_flags *flags)
 	}
 	free(res);
 	return (exponent);
-	return (1);
 }
 
 int			ft_printf_f_double(double i, t_flags *flags)

@@ -6,7 +6,7 @@
 /*   By: fprovolo <fprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 14:54:12 by fprovolo          #+#    #+#             */
-/*   Updated: 2020/02/05 12:50:34 by fprovolo         ###   ########.fr       */
+/*   Updated: 2020/02/07 15:46:05 by fprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int			get_argument(t_flags *flags, va_list ap)
 	int			ret;
 
 	arg_to_low(flags);
+	ret = 1;
 	if (flags->conversion == 'd' || flags->conversion == 'i')
 		ret = get_int(flags, ap);
 	if (flags->conversion == 'o' || flags->conversion == 'u' ||
